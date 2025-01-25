@@ -17,7 +17,7 @@ class CategoriesStructure extends GetView<HomeController> {
         padding: EdgeInsets.symmetric(
           horizontal: ScreenSize.screenWidth * 0.02,
         ),
-        height: ScreenSize.screenHeight * 0.17,
+        height: ScreenSize.screenHeight * 0.16,
         width: ScreenSize.screenWidth,
         alignment: Alignment.center,
         decoration: BoxDecoration(

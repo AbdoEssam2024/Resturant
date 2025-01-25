@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:resturant_anj/controller/home/home_controller.dart';
-
 import '../../../../core/constant/colors/app_colors.dart';
 import '../../../../core/constant/screen_size/screen_size.dart';
 import '../../../../model/home/best_seller_model.dart';
@@ -15,35 +14,36 @@ class BestSellerView extends GetView<HomeController> {
     return Container(
         color: AppColors.white,
         height: ScreenSize.screenHeight * 0.3,
-        padding: EdgeInsets.symmetric(horizontal: ScreenSize.screenWidth * 0.015),
+        padding: EdgeInsets.symmetric(horizontal: ScreenSize.screenWidth * 0.02),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Best Seller",
-                  style: TextStyle(
-                      color: AppColors.brown,
-                      fontSize: 24.sp,
-                      fontFamily: "cairo",
-                      fontWeight: FontWeight.bold),
-                ),
-                TextButton.icon(
-                    iconAlignment: IconAlignment.end,
-                    label: Text(
-                      "View All",
-                      style: TextStyle(
-                        fontFamily: "cairo",
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.orange,
-                      ),
-                    ),
-                    onPressed: () {},
-                    icon:
-                        Icon(Icons.arrow_forward_ios, color: AppColors.orange))
-              ],
-            ),
+               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               children: [
+                 Text(
+                   "Best Seller",
+                   style: TextStyle(
+                       color: AppColors.brown,
+                       fontSize: 24.sp,
+                       fontFamily: "cairo",
+                       fontWeight: FontWeight.bold),
+                 ),
+                 TextButton.icon(
+                     iconAlignment: IconAlignment.end,
+                     label: Text(
+                       "View All",
+                       style: TextStyle(
+                         fontFamily: "cairo",
+                         fontWeight: FontWeight.bold,
+                         color: AppColors.orange,
+                       ),
+                     ),
+                     onPressed: () {},
+                     icon:
+                         Icon(Icons.arrow_forward_ios, color: AppColors.orange))
+               ],
+             ),
             SizedBox(
                 height: ScreenSize.screenHeight * 0.2,
                 child: ListView.builder(
