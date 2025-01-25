@@ -16,6 +16,7 @@ import 'package:resturant_anj/view/core_widgets/pop_widget.dart';
 import '../widgets/best_seller_view.dart';
 import '../widgets/categories_main_view.dart';
 import '../widgets/home_appbar.dart';
+import '../widgets/offers_view.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({super.key});
@@ -24,36 +25,34 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     Get.put(HomeController());
     return PopScopeWidget(
-      func: (didpop, result) {
-        popFunc(
-            didpop,
-            AwesomeDialog(
-              title: "Exit",
-              body: Text("Are You Sure Leaving App"),
-              btnOkText: "Stay",
-              btnOkOnPress: () {
-                Get.back();
-              },
-              btnCancelText: "Close App",
-              btnCancelOnPress: () {
-                SystemNavigator.pop();
-              },
-              context: context,
-            ).show());
-      },
-      widget: Scaffold(
-          backgroundColor: AppColors.yellowBase,
-          body: SafeArea(
+        func: (didpop, result) {
+          popFunc(
+              didpop,
+              AwesomeDialog(
+                title: "Exit",
+                body: Text("Are You Sure Leaving App"),
+                btnOkText: "Stay",
+                btnOkOnPress: () {
+                  Get.back();
+                },
+                btnCancelText: "Close App",
+                btnCancelOnPress: () {
+                  SystemNavigator.pop();
+                },
+                context: context,
+              ).show());
+        },
+        widget: Scaffold(
+            backgroundColor: AppColors.yellowBase,
+            body: SafeArea(
               child: HandlingDataView(
-            statusRequest: controller.statusRequest,
-            widget: ListView(
-              children: <Widget>[
-                HomeAppbar(),
-                CategoriesStructure(),
-                BestSellerView(),
-              ],
-            ),
-          ))),
-    );
+                  statusRequest: controller.statusRequest,
+                  widget: ListView(children: <Widget>[
+                    HomeAppbar(),
+                    CategoriesStructure(),
+                    BestSellerView(),
+                    OffersMainView(),
+                  ])),
+            )));
   }
 }

@@ -45,7 +45,8 @@ class BestSellerView extends GetView<HomeController> {
                ],
              ),
             SizedBox(
-                height: ScreenSize.screenHeight * 0.2,
+
+                height: ScreenSize.screenHeight * 0.23,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: controller.bestSeller.length,
@@ -66,13 +67,20 @@ class BestSellerItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.symmetric(horizontal: 10),
+        width: ScreenSize.screenWidth * 0.4,
+        decoration: BoxDecoration(
+
+        ),
+        margin: EdgeInsets.symmetric(horizontal: ScreenSize.screenHeight * 0.01),
         child: Stack(
           fit: StackFit.passthrough,
           children: [
-            Image.asset(
-              bestSellerDataModel.itemImage!,
-              fit: BoxFit.cover,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: Image.asset(
+                bestSellerDataModel.itemImage!,
+                fit: BoxFit.cover,
+              ),
             ),
             Positioned(
                 right: 0,

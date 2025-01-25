@@ -42,7 +42,7 @@ class CategoriesMainView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        sharedPreferences.clear();
+
       },
       child: Container(
         margin: EdgeInsets.only(top: ScreenSize.screenHeight * 0.03),

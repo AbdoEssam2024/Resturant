@@ -2,13 +2,13 @@ import 'package:either_dart/either.dart';
 import 'package:resturant_anj/core/class/crud/crud.dart';
 import 'package:resturant_anj/core/constant/api/home_links/home_sections.dart';
 
-class CategoriesData {
+class OffersData {
   Crud crud;
 
-  CategoriesData(this.crud);
+  OffersData(this.crud);
 
-  getCatigoriesData() async {
-    var response = crud.postData(CategoriesApi.categories, {});
+  getOffersData() async {
+    var response = crud.postData(CategoriesApi.offers, {});
     return response.fold((l) => l, (r) => r);
   }
 }
