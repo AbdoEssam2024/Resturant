@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "34553273431",
+    "project_id": "resturant-anj",
+    "storage_bucket": "resturant-anj.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34553273431:android:fc56df9c426ef3ed5a1712",
+        "android_client_info": {
+          "package_name": "com.example.resturant_anj"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqBqTWT25_-hVtzJcVwa6nhHWTvGV4aeU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
