@@ -15,6 +15,25 @@ class AppImages {
   static String homeFive = "${homeImagesPath}home_image5.png";
   static String homeSix = "${homeImagesPath}home_image6.png";
 
+  static String homeNavImagesPath = "assets/images/home/nav_icons/";
+  static String nav_1 = "${homeNavImagesPath}home_nav_1.png";
+  static String nav_2 = "${homeNavImagesPath}home_nav_2.png";
+  static String nav_3 = "${homeNavImagesPath}home_nav_3.png";
+  static String nav_4 = "${homeNavImagesPath}home_nav_4.png";
+  static String nav_5 = "${homeNavImagesPath}home_nav_5.png";
+
+  static String homeDrawerImagesPath = "assets/images/home/drawer/";
+  static String drawer_1 = "${homeDrawerImagesPath}drawer_1.png";
+  static String drawer_2 = "${homeDrawerImagesPath}drawer_2.png";
+  static String drawer_3 = "${homeDrawerImagesPath}drawer_3.png";
+  static String drawer_4 = "${homeDrawerImagesPath}drawer_4.png";
+  static String drawer_5 = "${homeDrawerImagesPath}drawer_5.png";
+  static String drawer_6 = "${homeDrawerImagesPath}drawer_6.png";
+  static String drawer_7 = "${homeDrawerImagesPath}drawer_7.png";
+  static String logout = "${homeDrawerImagesPath}log_out.png";
+  static String drawerUser = "${homeDrawerImagesPath}drawer_user.png";
+
+
   static String lottiesPath = "assets/lottie/";
   static String loading = "${lottiesPath}loading.json";
   static String nodata = "${lottiesPath}nodata.json";

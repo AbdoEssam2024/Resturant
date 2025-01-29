@@ -4,7 +4,6 @@ import 'package:resturant_anj/controller/splash/splash_controller.dart';
 import 'package:resturant_anj/core/constant/colors/app_colors.dart';
 import 'package:resturant_anj/core/constant/screen_size/screen_size.dart';
 import 'package:resturant_anj/data/const_data/splash_data/splash_data.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
 class SplashButton extends StatelessWidget {
   const SplashButton({super.key});
@@ -24,13 +23,22 @@ class SplashButton extends StatelessWidget {
                     child: Stack(
                       fit: StackFit.expand,
                       children: [
-                        CircularProgressIndicator(
-                          strokeAlign: BorderSide.strokeAlignInside,
-                          strokeWidth: 6.0,
-                          valueColor: AlwaysStoppedAnimation(AppColors.orange),
-                          backgroundColor: AppColors.white,
-                          value: (controller.currentPage.toDouble() + 1.0) /
-                              splash.length.toDouble(),
+                        TweenAnimationBuilder<double>(
+                          tween: Tween(
+                            begin: 0.0,
+                            end: (controller.currentPage.toDouble() + 1.0) /
+                                splash.length.toDouble(),
+                          ),
+                          duration: Duration(seconds: 1),
+                          builder: (context, value, _) =>
+                              CircularProgressIndicator(
+                            strokeAlign: BorderSide.strokeAlignInside,
+                            strokeWidth: 6.0,
+                            backgroundColor: AppColors.white,
+                            value: value,
+                            valueColor:
+                                AlwaysStoppedAnimation(AppColors.orange),
+                          ),
                         ),
                         Positioned(
                           top: 10,
@@ -81,7 +89,8 @@ class SplashButton extends StatelessWidget {
                       },
                       child: Text(
                         controller.currentPage == 2 ? "Start" : "Next",
-                        style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ),
                   )

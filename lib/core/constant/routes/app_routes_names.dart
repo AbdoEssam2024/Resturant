@@ -11,4 +11,5 @@ class AppRoutesNames {
   static String successResetPassword = "/successResetPassword";
   // home //
   static String homeScreen = "/home";
+  static String ordersScreen = "/ordersScreen";
 }

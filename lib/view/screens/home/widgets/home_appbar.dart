@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:resturant_anj/controller/home/home_controller.dart';
 
 import '../../../../core/constant/colors/app_colors.dart';
 import '../../../../core/constant/screen_size/screen_size.dart';
 import '../../../core_widgets/searchbar.dart';
 import 'appbar_icons.dart';
 
-class HomeAppbar extends StatelessWidget {
+class HomeAppbar extends GetView<HomeController> {
   const HomeAppbar({super.key});
 
   @override
@@ -20,7 +22,6 @@ class HomeAppbar extends StatelessWidget {
       color: AppColors.yellowBase,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-
         children: [
           Row(
             spacing: 10,
@@ -41,7 +42,9 @@ class HomeAppbar extends StatelessWidget {
                   ),
                   AppbarIcons(
                     icon: Icons.person_2_outlined,
-                    func: () {},
+                    func: () {
+                      controller.scaffoldKey.currentState!.openEndDrawer();
+                    },
                   ),
                 ],
               )
@@ -60,8 +63,7 @@ class HomeAppbar extends StatelessWidget {
               Text(
                 "Rise and shine! It's breakfast time",
                 style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.grey),
+                    fontWeight: FontWeight.w400, color: AppColors.grey),
               )
             ],
           )

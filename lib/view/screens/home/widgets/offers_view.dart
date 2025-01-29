@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:resturant_anj/controller/home/home_controller.dart';
 
 import '../../../../core/constant/colors/app_colors.dart';
-import '../../../../core/constant/images/app_images.dart';
 import '../../../../core/constant/screen_size/screen_size.dart';
 import '../../../../model/home/offers_model.dart';
 
@@ -13,52 +12,54 @@ class OffersMainView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: ScreenSize.screenHeight * 0.3,
-          child: PageView.builder(
-            controller: controller.pageController,
-              onPageChanged: (value) {
-                controller.onChange(value);
-              },
-              scrollDirection: Axis.horizontal,
-              itemCount: controller.offers.length,
-              itemBuilder: (context, index) => OffersView(
-                    offersModel: OffersModel.fromJson(controller.offers[index]),
-                  )),
-        ),
-        Container(
-            padding: EdgeInsets.only(bottom: ScreenSize.screenHeight * 0.015),
-            color: AppColors.white,
-            child: GetBuilder<HomeController>(
-              builder: (controller) => Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: ScreenSize.screenWidth * 0.015,
-                children: [
-                  ...List.generate(
-                      controller.offers.length,
-                      (index) => InkWell(
-                        onTap: () {
-                          controller.goToNextPage(index);
-                        },
-                        child: AnimatedContainer(
-                          duration: Duration(seconds: 1),
-                          curve: Curves.easeInOut,
-                          decoration: BoxDecoration(
-                              color: controller.currentPage == index
-                                  ? AppColors.orange
-                                  : AppColors.yellowBase,
-                              borderRadius: BorderRadius.circular(50)),
-                          width: ScreenSize.screenWidth * 0.08,
-                          height: ScreenSize.screenHeight * 0.01,
-                        ),
-                      ))
-                ],
-              ),
-            ))
-      ],
-    );
+    return  Column(
+              children: [
+                SizedBox(
+
+                  height: ScreenSize.screenHeight * 0.3,
+                  child: PageView.builder(
+                      controller: controller.pageController,
+                      onPageChanged: (value) {
+                        controller.onChange(value);
+                      },
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.offers.length,
+                      itemBuilder: (context, index) => OffersView(
+                            offersModel:
+                                OffersModel.fromJson(controller.offers[index]),
+                          )),
+                ),
+                Container(
+                  padding:
+                      EdgeInsets.only(bottom: ScreenSize.screenHeight * 0.015),
+                  color: AppColors.white,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: ScreenSize.screenWidth * 0.015,
+                    children: [
+                      ...List.generate(
+                          controller.offers.length,
+                          (index) => InkWell(
+                                onTap: () {
+                                  controller.goToNextPage(index);
+                                },
+                                child: AnimatedContainer(
+                                  duration: Duration(seconds: 1),
+                                  curve: Curves.easeInOut,
+                                  decoration: BoxDecoration(
+                                      color: controller.currentPage == index
+                                          ? AppColors.orange
+                                          : AppColors.yellowBase,
+                                      borderRadius: BorderRadius.circular(50)),
+                                  width: ScreenSize.screenWidth * 0.08,
+                                  height: ScreenSize.screenHeight * 0.01,
+                                ),
+                              ))
+                    ],
+                  ),
+                )
+              ],
+            );
   }
 }
 

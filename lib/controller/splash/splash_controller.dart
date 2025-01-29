@@ -34,6 +34,7 @@ class SplashController extends GetxController {
   @override
   void onInit() {
     pageController = PageController();
+
     super.onInit();
   }
 

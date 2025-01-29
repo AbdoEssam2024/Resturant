@@ -9,6 +9,7 @@ class CategoriesData {
 
   getCatigoriesData() async {
     var response = crud.postData(CategoriesApi.categories, {});
+
     return response.fold((l) => l, (r) => r);
   }
 }

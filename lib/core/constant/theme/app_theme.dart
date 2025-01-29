@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:resturant_anj/core/constant/colors/app_colors.dart';
 
 ThemeData englishTheme = ThemeData(
-    fontFamily: "PlayfairDisplay",
+    fontFamily: "Cairo",
     textTheme: TextTheme(
       headlineLarge: TextStyle(
           fontWeight: FontWeight.bold, fontSize: 28, color: AppColors.black),
@@ -16,7 +16,7 @@ ThemeData englishTheme = ThemeData(
     ));
 
     ThemeData arabicTheme = ThemeData(
-    fontFamily: "Cairo",
+    fontFamily: "PlayfairDisplay",
     textTheme: TextTheme(
       headlineLarge: TextStyle(
           fontWeight: FontWeight.bold, fontSize: 28, color: AppColors.black),

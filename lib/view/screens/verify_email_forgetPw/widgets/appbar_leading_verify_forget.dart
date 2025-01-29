@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:resturant_anj/controller/signup/signup_controller.dart';
 import 'package:resturant_anj/controller/verify_signup/verify_signup_controller.dart';
 import 'package:resturant_anj/core/constant/colors/app_colors.dart';
 import 'package:resturant_anj/core/constant/screen_size/screen_size.dart';

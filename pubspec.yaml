@@ -47,6 +47,8 @@ dependencies:
   either_dart: ^1.0.0
   awesome_dialog: ^3.2.1
   flutter_animate: ^4.5.2
+  animated_bottom_navigation_bar: ^1.3.3
+  convex_bottom_bar: ^3.2.0
   
 
 dev_dependencies:
@@ -78,6 +80,8 @@ flutter:
     - assets/images/home/catigories/
     - assets/images/home/best_seller/
     - assets/images/home/offers/
+    - assets/images/home/nav_icons/
+    - assets/images/home/drawer/
     - assets/lottie/
 
   # An image asset can refer to one or more resolution-specific "variants", see

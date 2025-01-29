@@ -13,53 +13,54 @@ class BestSellerView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Container(
         color: AppColors.white,
-        height: ScreenSize.screenHeight * 0.3,
-        padding: EdgeInsets.symmetric(horizontal: ScreenSize.screenWidth * 0.02),
+        height: ScreenSize.screenHeight * 0.35,
+        padding:
+            EdgeInsets.symmetric(horizontal: ScreenSize.screenWidth * 0.02),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
-               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-               children: [
-                 Text(
-                   "Best Seller",
-                   style: TextStyle(
-                       color: AppColors.brown,
-                       fontSize: 24.sp,
-                       fontFamily: "cairo",
-                       fontWeight: FontWeight.bold),
-                 ),
-                 TextButton.icon(
-                     iconAlignment: IconAlignment.end,
-                     label: Text(
-                       "View All",
-                       style: TextStyle(
-                         fontFamily: "cairo",
-                         fontWeight: FontWeight.bold,
-                         color: AppColors.orange,
-                       ),
-                     ),
-                     onPressed: () {},
-                     icon:
-                         Icon(Icons.arrow_forward_ios, color: AppColors.orange))
-               ],
-             ),
-            SizedBox(
-
-                height: ScreenSize.screenHeight * 0.23,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: controller.bestSeller.length,
-                    itemBuilder: (context, index) => BestSellerItems(
-                          bestSellerDataModel: BestSellerDataModel.fromJson(
-                              controller.bestSeller[index]),
-                        )))
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Best Seller",
+                  style: TextStyle(
+                      color: AppColors.brown,
+                      fontSize: 24.sp,
+                      fontFamily: "cairo",
+                      fontWeight: FontWeight.bold),
+                ),
+                TextButton.icon(
+                    iconAlignment: IconAlignment.end,
+                    label: Text(
+                      "View All",
+                      style: TextStyle(
+                        fontFamily: "cairo",
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.orange,
+                      ),
+                    ),
+                    onPressed: () {},
+                    icon:
+                        Icon(Icons.arrow_forward_ios, color: AppColors.orange))
+              ],
+            ),
+             SizedBox(
+                        height: ScreenSize.screenHeight * 0.28,
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: controller.bestSeller.length,
+                            itemBuilder: (context, index) => BestSellerItems(
+                                  bestSellerDataModel:
+                                      BestSellerDataModel.fromJson(
+                                          controller.bestSeller[index]),
+                                )))
           ],
         ));
   }
 }
 
-class BestSellerItems extends StatelessWidget {
+class BestSellerItems extends GetView<HomeController> {
   final BestSellerDataModel bestSellerDataModel;
 
   const BestSellerItems({super.key, required this.bestSellerDataModel});
@@ -67,11 +68,11 @@ class BestSellerItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: ScreenSize.screenWidth * 0.4,
-        decoration: BoxDecoration(
 
-        ),
-        margin: EdgeInsets.symmetric(horizontal: ScreenSize.screenHeight * 0.01),
+        width: ScreenSize.screenWidth * 0.4,
+        decoration: BoxDecoration(),
+        margin:
+            EdgeInsets.symmetric(horizontal: ScreenSize.screenWidth * 0.02 ),
         child: Stack(
           fit: StackFit.passthrough,
           children: [

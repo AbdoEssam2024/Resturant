@@ -4,7 +4,6 @@ import 'package:resturant_anj/controller/verify_forget_pass/verify_forgetpass_co
 import 'package:resturant_anj/core/constant/colors/app_colors.dart';
 import 'package:resturant_anj/core/constant/screen_size/screen_size.dart';
 import 'package:resturant_anj/core/functions/pop_func.dart';
-import 'package:resturant_anj/view/core_widgets/appbar_leading.dart';
 import 'package:resturant_anj/view/core_widgets/auth_text.dart';
 import 'package:resturant_anj/view/core_widgets/pop_widget.dart';
 import 'package:resturant_anj/view/screens/forget_password/widgets/text_btn.dart';

@@ -10,7 +10,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:resturant_anj/core/functions/handling_request.dart';
 import 'package:resturant_anj/data/remote_data/auth/auth/login/login_data.dart';
 import 'package:resturant_anj/main.dart';
-// import 'package:resturant_anj/main.dart';
 
 class LoginController extends GetxController {
   StatusRequest statusRequest = StatusRequest.none;
@@ -28,6 +27,7 @@ class LoginController extends GetxController {
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
           sharedPreferences.setInt("visit", 2);
+          sharedPreferences.setInt("id", response['data']['id']);
           sharedPreferences.setString("name", response['data']['user_name']);
           sharedPreferences.setString(
               "email", response['data']['user_email']);

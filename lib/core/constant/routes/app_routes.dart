@@ -12,6 +12,8 @@ import 'package:resturant_anj/view/screens/succes_signup/success_signup.dart';
 import 'package:resturant_anj/view/screens/verify_email_forgetPw/screen/verify_email_forgetpw.dart';
 import 'package:resturant_anj/view/screens/verify_email_signup/screen/verify_email_signup.dart';
 
+import '../../../view/screens/orders/screen/orders_screen.dart';
+
 List<GetPage<dynamic>> routes = [
   GetPage(
       name: AppRoutesNames.splashScreen,
@@ -32,4 +34,5 @@ List<GetPage<dynamic>> routes = [
   GetPage(
       name: AppRoutesNames.successResetPassword, page: () => SuccessResetPass()),
   GetPage(name: AppRoutesNames.homeScreen, page: () => HomePage()),
+  GetPage(name: AppRoutesNames.ordersScreen, page: () => OrdersScreen()),
 ];
