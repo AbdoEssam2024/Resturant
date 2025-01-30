@@ -1,22 +1,25 @@
 class OffersModel {
   int? offerId;
-  int? itemsCategoryId;
   String? offerTitle;
+  int? offerPrice;
   int? offerDiscount;
-  String? offersImage;
+  String? itemName;
+  String? itemImage;
 
   OffersModel(
       {this.offerId,
-        this.itemsCategoryId,
         this.offerTitle,
+        this.offerPrice,
         this.offerDiscount,
-        this.offersImage});
+        this.itemName,
+        this.itemImage});
 
   OffersModel.fromJson(Map<String, dynamic> json) {
     offerId = json['offer_id'];
-    itemsCategoryId = json['items_category_id'];
     offerTitle = json['offer_title'];
+    offerPrice = json['offer_price'];
     offerDiscount = json['offer_discount'];
-    offersImage = json['offers_image'];
+    itemName = json['item_name'];
+    itemImage = json['item_image'];
   }
 }

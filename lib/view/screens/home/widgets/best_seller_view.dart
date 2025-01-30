@@ -98,7 +98,7 @@ class BestSellerItems extends GetView<HomeController> {
                   height: ScreenSize.screenHeight * 0.04,
                   child: Text(
                     textAlign: TextAlign.center,
-                    "${bestSellerDataModel.itemPrice!.toDouble()}\$",
+                    "${bestSellerDataModel.itemPriceAft!.toDouble()}\$",
                     style: TextStyle(
                         color: AppColors.white,
                         fontFamily: "cairo",

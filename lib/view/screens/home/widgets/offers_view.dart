@@ -97,7 +97,7 @@ class OffersView extends GetView<HomeController> {
                           borderRadius: BorderRadius.horizontal(
                               right: Radius.circular(50)),
                           child: Image.asset(
-                            offersModel.offersImage!,
+                            offersModel.itemImage!,
                             fit: BoxFit.fitHeight,
                           ),
                         ),

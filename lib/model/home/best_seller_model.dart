@@ -1,22 +1,13 @@
 class BestSellerDataModel {
-  int? itemId;
-  String? itemName;
+  int? bestId;
   String? itemImage;
-  int? itemCategoryId;
-  double? itemPrice;
+  int? itemPriceAft;
 
-  BestSellerDataModel(
-      {this.itemId,
-        this.itemName,
-        this.itemImage,
-        this.itemCategoryId,
-        this.itemPrice});
+  BestSellerDataModel({this.bestId, this.itemImage, this.itemPriceAft});
 
   BestSellerDataModel.fromJson(Map<String, dynamic> json) {
-    itemId = json['item_id'];
-    itemName = json['item_name'];
+    bestId = json['best_id'];
     itemImage = json['item_image'];
-    itemCategoryId = json['item_category_id'];
-    itemPrice = json['item_price'];
+    itemPriceAft = json['item_price_aft'];
   }
 }

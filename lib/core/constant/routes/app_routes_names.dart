@@ -12,4 +12,5 @@ class AppRoutesNames {
   // home //
   static String homeScreen = "/home";
   static String ordersScreen = "/ordersScreen";
+  static String successCancelOrder = "/successCancelOrder";
 }

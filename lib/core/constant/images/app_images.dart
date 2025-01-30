@@ -14,6 +14,7 @@ class AppImages {
   static String homeFour = "${homeImagesPath}home_image4.png";
   static String homeFive = "${homeImagesPath}home_image5.png";
   static String homeSix = "${homeImagesPath}home_image6.png";
+  static String cancel = "${homeImagesPath}cancel.png";
 
   static String homeNavImagesPath = "assets/images/home/nav_icons/";
   static String nav_1 = "${homeNavImagesPath}home_nav_1.png";

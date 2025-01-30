@@ -4,33 +4,47 @@ import 'package:resturant_anj/core/class/status_request/statusrequest.dart';
 import 'package:resturant_anj/core/constant/routes/app_routes_names.dart';
 import 'package:resturant_anj/data/orders/active_orders_data.dart';
 import 'package:resturant_anj/data/orders/cancel_orders_data.dart';
+import 'package:resturant_anj/data/orders/change_orders_status.dart';
 import 'package:resturant_anj/data/orders/complete_orders_data.dart';
-
+import '../../core/constant/colors/app_colors.dart';
 import '../../core/functions/handling_request.dart';
 import '../../main.dart';
 
-class OrdersController extends GetxController
-    with GetSingleTickerProviderStateMixin {
+class OrdersController extends GetxController with GetTickerProviderStateMixin {
+  late AnimationController animationController;
 
-  late int pageIndex ;
+  bool isSelected = false;
+  Color radioColor = AppColors.black;
+
+  late int pageIndex;
+
   late TabController tabController;
 
   ActiveOrdersData activeOrdersData = ActiveOrdersData(Get.find());
-  StatusRequest activeStatusRequest = StatusRequest.none;
+  StatusRequest statusRequest = StatusRequest.none;
 
   List activeOrders = [];
 
   CompleteOrdersData completeOrdersData = CompleteOrdersData(Get.find());
-  StatusRequest completeStatusRequest = StatusRequest.none;
 
   List completeOrders = [];
 
   CancelOrdersData cancelOrdersData = CancelOrdersData(Get.find());
-  StatusRequest cancelStatusRequest = StatusRequest.none;
+
+  ChangeOrdersStatus changeOrdersStatus = ChangeOrdersStatus(Get.find());
+  StatusRequest changeOrderStatusRequest = StatusRequest.none;
+  String changeResult = "";
 
   List cancelOrders = [];
 
   late int userId;
+
+  String? groupVal;
+
+  getValue(String value) {
+    groupVal = value;
+    update();
+  }
 
   backToHomePage() {
     Get.offNamed(AppRoutesNames.homeScreen);
@@ -45,11 +59,11 @@ class OrdersController extends GetxController
   }
 
   getActiveOrders() async {
-    activeStatusRequest = StatusRequest.loading;
+    statusRequest = StatusRequest.loading;
     var response = await activeOrdersData.getActiveOrdersData(userId);
-    activeStatusRequest = handlingData(response);
+    statusRequest = handlingData(response);
     if (response['status'] == 'success') {
-      if (activeStatusRequest == StatusRequest.success) {
+      if (statusRequest == StatusRequest.success) {
         activeOrders.addAll(response['data']);
       }
     }
@@ -57,11 +71,11 @@ class OrdersController extends GetxController
   }
 
   getCompleteOrders() async {
-    completeStatusRequest = StatusRequest.loading;
+    statusRequest = StatusRequest.loading;
     var response = await completeOrdersData.getCompleteOrdersData(userId);
-    completeStatusRequest = handlingData(response);
+    statusRequest = handlingData(response);
     if (response['status'] == 'success') {
-      if (completeStatusRequest == StatusRequest.success) {
+      if (statusRequest == StatusRequest.success) {
         completeOrders.addAll(response['data']);
       }
     }
@@ -70,15 +84,27 @@ class OrdersController extends GetxController
   }
 
   getCancelOrders() async {
-    cancelStatusRequest = StatusRequest.loading;
+    statusRequest = StatusRequest.loading;
     var response = await cancelOrdersData.getCancelOrdersData(userId);
-    cancelStatusRequest = handlingData(response);
+    statusRequest = handlingData(response);
     if (response['status'] == 'success') {
-      if (cancelStatusRequest == StatusRequest.success) {
+      if (statusRequest == StatusRequest.success) {
         cancelOrders.addAll(response['data']);
       }
     }
+    update();
+  }
 
+  changeOrderStatus({required String status, required int orderId}) async {
+    changeOrderStatusRequest = StatusRequest.loading;
+    var response = await changeOrdersStatus.changeOrdersStatus(status, orderId);
+    changeOrderStatusRequest = handlingData(response);
+    if (response['status'] == 'success') {
+      if (changeOrderStatusRequest == StatusRequest.success) {
+        changeResult = response['message'];
+        Get.offAllNamed(AppRoutesNames.successCancelOrder);
+      }
+    }
     update();
   }
 
@@ -87,6 +113,8 @@ class OrdersController extends GetxController
     tabController = TabController(
         length: 3, vsync: this, animationDuration: Duration(milliseconds: 500));
     pageIndex = Get.arguments['index'];
+    animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
     getUserData();
     getActiveOrders();
     getCompleteOrders();

@@ -3,4 +3,5 @@ class OrdersApi {
   static String activeOrders = "${ordersServer}active_orders.php";
   static String completeOrders = "${ordersServer}complete_orders.php";
   static String cancelOrders = "${ordersServer}cancel_orders.php";
+  static String changeOrdersStatus = "${ordersServer}change_order_status.php";
 }

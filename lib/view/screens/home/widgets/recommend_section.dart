@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:resturant_anj/controller/home/home_controller.dart';
 import 'package:resturant_anj/model/home/recommended_model.dart';
-
 import '../../../../core/constant/colors/app_colors.dart';
 import '../../../../core/constant/screen_size/screen_size.dart';
 
@@ -13,6 +12,7 @@ class RecommendSection extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Container(
+
         padding:
             EdgeInsets.symmetric(horizontal: ScreenSize.screenWidth * 0.02),
         color: AppColors.white,
@@ -43,7 +43,7 @@ class RecommendSection extends GetView<HomeController> {
             ],
           ),
           SizedBox(
-            height: ScreenSize.screenHeight * 0.25,
+            height: ScreenSize.screenHeight * 0.28,
             child: GridView.builder(
                 itemCount: controller.recommended.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -72,6 +72,7 @@ class RecommendedItems extends StatelessWidget {
       child: Stack(
         children: [
           Container(
+
             height: ScreenSize.screenHeight,
             padding: EdgeInsets.all(5.sp),
             child: ClipRRect(

@@ -10,6 +10,7 @@ class AppColors {
   static Color orangeTwo = Color(0xffFFDECF);
   static Color yellowBase = Color(0xffF5CB58);
   static Color yellow = Color(0xffF4BA1B);
+  static Color yellowTwo = Color(0xffF3E9B5);
   static Color catBg = Color(0xffF3E9B5);
   static Color brown = Color(0xff391713);
   // OTP Colors //
