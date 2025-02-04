@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/functions/inputs_func.dart';
 import '../../../core_widgets/custom_form_field.dart';
 
 class UserProfileInputs extends StatelessWidget {

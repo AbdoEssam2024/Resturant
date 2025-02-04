@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:resturant_anj/controller/home/home_controller.dart';
-import 'package:resturant_anj/main.dart';
-
 import '../../../../core/constant/colors/app_colors.dart';
 import '../../../../core/constant/screen_size/screen_size.dart';
 import '../../../core_widgets/searchbar.dart';

@@ -16,7 +16,6 @@ class CheckOutOrderItemsView extends GetView<CheckOutController> {
 
   @override
   Widget build(BuildContext context) {
-    OrdersItemsModel ordersItemsModel = OrdersItemsModel();
     return Container(
       decoration: BoxDecoration(
         color: AppColors.white,
