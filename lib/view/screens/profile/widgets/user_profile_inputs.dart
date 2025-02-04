@@ -6,16 +6,21 @@ class UserProfileInputs extends StatelessWidget {
   final TextEditingController feildController;
 
   final String Function(String?)? validFunc;
-  final void Function()? fieldTapFunc ;
+  final void Function()? fieldTapFunc;
 
   final String label;
-  final IconData? icon ;
-final bool readOnly ;
+  final IconData? icon;
+
+  final bool readOnly;
+
   const UserProfileInputs(
       {super.key,
       required this.feildController,
-        required this.validFunc,
-      required this.label, this.icon, this.fieldTapFunc, this.readOnly = false});
+      required this.validFunc,
+      required this.label,
+      this.icon,
+      this.fieldTapFunc,
+      this.readOnly = false});
 
   @override
   Widget build(BuildContext context) {

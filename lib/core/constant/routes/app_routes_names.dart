@@ -17,4 +17,6 @@ class AppRoutesNames {
   static String checkOutScreen = "/checkOutScreen";
   static String myProfileScreen = "/myProfileScreen";
   static String userAddressScreen = "/userAddressScreen";
+  static String addAddressScreen = "/addAddressScreen";
+  static String editAddressScreen = "/editAddressScreen";
 }

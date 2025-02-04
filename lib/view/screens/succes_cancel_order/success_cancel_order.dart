@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:resturant_anj/core/constant/colors/app_colors.dart';
 import 'package:resturant_anj/core/constant/images/app_images.dart';
 import 'package:resturant_anj/core/constant/routes/app_routes_names.dart';

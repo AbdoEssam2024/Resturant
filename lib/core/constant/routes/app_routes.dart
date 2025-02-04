@@ -16,6 +16,8 @@ import '../../../view/screens/orders/screen/order_items_screen.dart';
 import '../../../view/screens/orders/screen/orders_screen.dart';
 import '../../../view/screens/profile/screen/my_profile.dart';
 import '../../../view/screens/succes_cancel_order/success_cancel_order.dart';
+import '../../../view/screens/user_address/screen/add_address_screen.dart';
+import '../../../view/screens/user_address/screen/edit_address_screen.dart';
 import '../../../view/screens/user_address/screen/user_address_screen.dart';
 
 List<GetPage<dynamic>> routes = [
@@ -47,4 +49,8 @@ List<GetPage<dynamic>> routes = [
   GetPage(name: AppRoutesNames.myProfileScreen, page: () => MyProfileScreen()),
   GetPage(
       name: AppRoutesNames.userAddressScreen, page: () => UserAddressScreen()),
+  GetPage(
+      name: AppRoutesNames.addAddressScreen, page: () => AddAddressScreen()),
+  GetPage(
+      name: AppRoutesNames.editAddressScreen, page: () => EditAddressScreen()),
 ];
