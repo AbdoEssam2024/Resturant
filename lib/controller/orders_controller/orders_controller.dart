@@ -12,42 +12,31 @@ import '../../main.dart';
 
 class OrdersController extends GetxController with GetTickerProviderStateMixin {
   late AnimationController animationController;
-
+  late TabController tabController;
+  late int pageIndex;
+  late int userId;
   bool isSelected = false;
   Color radioColor = AppColors.black;
-
-  late int pageIndex;
-
-  late TabController tabController;
-
-  ActiveOrdersData activeOrdersData = ActiveOrdersData(Get.find());
   StatusRequest statusRequest = StatusRequest.none;
 
-  List activeOrders = [];
-
+  ActiveOrdersData activeOrdersData = ActiveOrdersData(Get.find());
+  List activeOrders = [].obs;
   CompleteOrdersData completeOrdersData = CompleteOrdersData(Get.find());
-
-  List completeOrders = [];
-
+  List completeOrders = [].obs;
   CancelOrdersData cancelOrdersData = CancelOrdersData(Get.find());
+  List cancelOrders = [].obs;
 
   ChangeOrdersStatus changeOrdersStatus = ChangeOrdersStatus(Get.find());
   StatusRequest changeOrderStatusRequest = StatusRequest.none;
   String changeResult = "";
 
-  List cancelOrders = [];
-
-  late int userId;
-
-  String? groupVal;
-
-  getValue(String value) {
-    groupVal = value;
-    update();
-  }
-
   backToHomePage() {
     Get.offNamed(AppRoutesNames.homeScreen);
+  }
+
+  goToCheckOutScreen({required int orderId}) {
+    Get.offNamed(AppRoutesNames.checkOutScreen,
+        arguments: {"orderId": orderId});
   }
 
   getUserData() {
@@ -58,7 +47,7 @@ class OrdersController extends GetxController with GetTickerProviderStateMixin {
     }
   }
 
-  getActiveOrders() async {
+  getActiveOrdersData() async {
     statusRequest = StatusRequest.loading;
     var response = await activeOrdersData.getActiveOrdersData(userId);
     statusRequest = handlingData(response);
@@ -70,7 +59,7 @@ class OrdersController extends GetxController with GetTickerProviderStateMixin {
     update();
   }
 
-  getCompleteOrders() async {
+  getCompleteOrdersData() async {
     statusRequest = StatusRequest.loading;
     var response = await completeOrdersData.getCompleteOrdersData(userId);
     statusRequest = handlingData(response);
@@ -79,11 +68,10 @@ class OrdersController extends GetxController with GetTickerProviderStateMixin {
         completeOrders.addAll(response['data']);
       }
     }
-
     update();
   }
 
-  getCancelOrders() async {
+  getCancelOrdersData() async {
     statusRequest = StatusRequest.loading;
     var response = await cancelOrdersData.getCancelOrdersData(userId);
     statusRequest = handlingData(response);
@@ -95,17 +83,42 @@ class OrdersController extends GetxController with GetTickerProviderStateMixin {
     update();
   }
 
-  changeOrderStatus({required String status, required int orderId}) async {
+  cancelOrder({required String status, required int orderId}) async {
+    changeOrderStatusRequest = StatusRequest.loading;
+    var response = await changeOrdersStatus.changeOrdersStatus(status, orderId);
+    changeOrderStatusRequest = handlingData(response);
+    print("Res :=> $response");
+    if (response['status'] == 'success') {
+      if (changeOrderStatusRequest == StatusRequest.success) {
+        changeResult = "Order Status Changed Successfully";
+        Get.offAllNamed(AppRoutesNames.successCancelOrder);
+      }
+    } else {
+      changeResult = "Order Status Changed Failed";
+      Get.snackbar("${response['status']}", changeResult);
+    }
+    update();
+  }
+
+  repeatOrder({
+    required String status,
+    required int orderId,
+  }) async {
     changeOrderStatusRequest = StatusRequest.loading;
     var response = await changeOrdersStatus.changeOrdersStatus(status, orderId);
     changeOrderStatusRequest = handlingData(response);
     if (response['status'] == 'success') {
       if (changeOrderStatusRequest == StatusRequest.success) {
         changeResult = response['message'];
-        Get.offAllNamed(AppRoutesNames.successCancelOrder);
+        Get.snackbar("${response['status']}", changeResult);
       }
     }
     update();
+  }
+
+  goToOrderItemsView(int orderId, String orderStatus) {
+    Get.offNamed(AppRoutesNames.orderItemsScreen,
+        arguments: {"orderid": orderId, "orderStatus": orderStatus});
   }
 
   @override
@@ -116,9 +129,9 @@ class OrdersController extends GetxController with GetTickerProviderStateMixin {
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
     getUserData();
-    getActiveOrders();
-    getCompleteOrders();
-    getCancelOrders();
+    getActiveOrdersData();
+    getCompleteOrdersData();
+    getCancelOrdersData();
     super.onInit();
   }
 }

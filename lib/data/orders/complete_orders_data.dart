@@ -8,8 +8,8 @@ class CompleteOrdersData {
   CompleteOrdersData(this.crud);
 
   getCompleteOrdersData(int userId) async {
-    var response = crud.postData(OrdersApi.completeOrders, {"userid": userId.toString()});
-
+    var response =
+        crud.postData(OrdersApi.completeOrders, {"userid": userId.toString()});
     return response.fold((l) => l, (r) => r);
   }
 }

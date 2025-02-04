@@ -4,24 +4,28 @@ import 'package:resturant_anj/core/constant/screen_size/screen_size.dart';
 
 class CostumFormField extends StatelessWidget {
   final IconData? sufIcon;
-  final String labelText;
+  final String? labelText;
   final void Function()? iconFunc;
   final String? Function(String?)? validFunc;
   final TextEditingController feildController;
   final bool secure;
+  final bool readOnly ;
+  final void Function()? onTapFunc ;
 
   const CostumFormField(
       {super.key,
       this.sufIcon,
-      required this.labelText,
+      this.labelText = "",
       this.iconFunc,
       this.validFunc,
       required this.feildController,
-      required this.secure});
+      required this.secure, this.readOnly = false, this.onTapFunc,});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: readOnly,
+      onTap: onTapFunc,
       obscureText: secure,
       controller: feildController,
       validator: validFunc,
@@ -37,7 +41,7 @@ class CostumFormField extends StatelessWidget {
             padding:
                 EdgeInsets.symmetric(horizontal: ScreenSize.screenWidth * 0.001),
             child: Text(
-              labelText,
+              labelText!,
               style: TextStyle(
                   color: AppColors.black, fontWeight: FontWeight.bold),
             ),

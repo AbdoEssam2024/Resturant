@@ -1,21 +1,17 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:resturant_anj/controller/orders_controller/orders_controller.dart';
+import '../../../../controller/core_controller/core_controller.dart';
 import '../../../../core/constant/colors/app_colors.dart';
 import '../../../../core/constant/screen_size/screen_size.dart';
 
-class BottomSheetWidget extends GetView<OrdersController> {
-  final String status;
-
-  final int orderId;
+class BottomSheetWidget extends GetView<CoreController> {
+  final void Function() func ;
 
   const BottomSheetWidget({
     super.key,
-    required this.status,
-    required this.orderId,
+    required this.func
   });
 
   @override
@@ -26,7 +22,7 @@ class BottomSheetWidget extends GetView<OrdersController> {
             EdgeInsets.symmetric(horizontal: ScreenSize.screenWidth * 0.03),
         width: ScreenSize.screenWidth,
         height: ScreenSize.screenHeight,
-        child: GetBuilder<OrdersController>(
+        child: GetBuilder<CoreController>(
             builder: (controller) => Column(
                   children: [
                     Container(
@@ -66,10 +62,7 @@ class BottomSheetWidget extends GetView<OrdersController> {
                               vertical: ScreenSize.screenHeight * 0.015),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
-                          onPressed: () {
-                            controller.changeOrderStatus(
-                                status: status, orderId: orderId);
-                          },
+                          onPressed: func,
                           child: BottomSheetText(
                             text: "Submit",
                             size: 16.sp,
@@ -82,7 +75,7 @@ class BottomSheetWidget extends GetView<OrdersController> {
   }
 }
 
-class RadioWidget extends GetView<OrdersController> {
+class RadioWidget extends GetView<CoreController> {
   final String text;
 
   final String val;
@@ -99,6 +92,7 @@ class RadioWidget extends GetView<OrdersController> {
           size: 14.sp,
         ),
         Radio(
+          activeColor: AppColors.orange,
           value: val,
           groupValue: controller.groupVal,
           onChanged: (value) {

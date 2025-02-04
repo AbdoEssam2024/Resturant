@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 validInput(String val, int min, int max, String type, String feildName) {
+
   if (val.isEmpty) {
     return "Please Enter Your $feildName";
   }
@@ -17,10 +18,4 @@ validInput(String val, int min, int max, String type, String feildName) {
       return "Please Enter Valid $feildName";
     }
   }
-  if (type == "name") {
-    if (!GetUtils.isUsername(val)) {
-      return "Please Enter Valid $feildName Withous Spaces";
-    }
-  }
 }
-

@@ -33,6 +33,7 @@ class AppImages {
   static String drawer_7 = "${homeDrawerImagesPath}drawer_7.png";
   static String logout = "${homeDrawerImagesPath}log_out.png";
   static String drawerUser = "${homeDrawerImagesPath}drawer_user.png";
+  static String userImage = "${homeDrawerImagesPath}user_image.png";
 
 
   static String lottiesPath = "assets/lottie/";

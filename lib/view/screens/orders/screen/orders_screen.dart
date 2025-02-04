@@ -7,8 +7,10 @@ import 'package:resturant_anj/view/screens/orders/widgets/order_btn.dart';
 import 'package:resturant_anj/view/screens/orders/widgets/tabs_widget.dart';
 import '../../../../core/constant/colors/app_colors.dart';
 import '../../../core_widgets/bottom_app_bar.dart';
+import '../widgets/active_orders_view.dart';
+import '../widgets/cancel_orders_view.dart';
+import '../widgets/complete_orders_view.dart';
 import '../widgets/no_orders.dart';
-import '../widgets/orders_item.dart';
 
 class OrdersScreen extends GetView<OrdersController> {
   const OrdersScreen({super.key});
@@ -44,7 +46,7 @@ class OrdersScreen extends GetView<OrdersController> {
               child: GetBuilder<OrdersController>(
                   builder: (controller) => OrdersTabBar())),
           SizedBox(
-            height: ScreenSize.screenHeight * 0.8,
+            height: ScreenSize.screenHeight * 0.63,
             child: GetBuilder<OrdersController>(
                 builder: (controller) => HandlingDataView(
                     statusRequest: controller.statusRequest,
@@ -57,45 +59,24 @@ class OrdersScreen extends GetView<OrdersController> {
                                 )
                               : ActiveOrdersView(
                                   btnTwoWidget: OrderBtn(
-                                      btnFunc: () {}, text: "Track Order"),
-                                  ordersModel: controller.activeOrders,
-                                  count: controller.activeOrders.length,
-                                  text: 'Order In Progress',
-                                  icon: Icons.downloading_rounded,
-                                  iconColor: AppColors.otpaccentDarkGreenColor,
-                                  changeStatus: "cancel",
-                                  btnText: "Cancel Order",
+                                      btnFunc: () {}, text: "Leave Review"),
                                 ),
                           controller.completeOrders.isEmpty
                               ? NoOrders(
                                   text: "Completed",
                                 )
-                              : ActiveOrdersView(
-                                  btnText: "Order Again",
-                                  iconColor: AppColors.orange,
-                                  icon: Icons.gpp_good_rounded,
-                                  text: "Order delivered",
+                              : CompleteOrdersView(
                                   btnTwoWidget: OrderBtn(
                                       btnFunc: () {}, text: "Leave Review"),
-                                  ordersModel: controller.completeOrders,
-                                  count: controller.completeOrders.length,
-                                  changeStatus: 'active',
                                 ),
                           controller.cancelOrders.isEmpty
                               ? NoOrders(
                                   text: "Canceled",
                                 )
-                              : ActiveOrdersView(
-                                  btnText: "Order Again",
-                                  iconColor: AppColors.red,
-                                  icon: Icons.cancel,
-                                  text: "Order Canceled",
-                                  changeStatus: "active",
+                              : CancelOrdersView(
                                   btnTwoWidget: OrderBtn(
                                       btnFunc: () {}, text: "Leave Review"),
-                                  ordersModel: controller.cancelOrders,
-                                  count: controller.cancelOrders.length,
-                                ),
+                                )
                         ]))),
           )
         ]),

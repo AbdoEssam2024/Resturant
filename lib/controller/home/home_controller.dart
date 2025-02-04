@@ -113,7 +113,6 @@ class HomeController extends GetxController {
     getOffersItems();
     getRecommendedItems();
     scaffoldKey = GlobalKey<ScaffoldState>();
-
     super.onInit();
   }
 }

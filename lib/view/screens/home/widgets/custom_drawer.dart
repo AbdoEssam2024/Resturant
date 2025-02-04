@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:resturant_anj/controller/home/home_controller.dart';
 import 'package:resturant_anj/core/constant/images/app_images.dart';
 import 'package:resturant_anj/core/constant/screen_size/screen_size.dart';
+import 'package:resturant_anj/core/functions/user_drawer_function.dart';
 import 'package:resturant_anj/data/const_data/home_data/drawer_data.dart';
 import '../../../../core/constant/colors/app_colors.dart';
 
@@ -31,7 +32,8 @@ class CustomDrawer extends GetView<HomeController> {
                     },
                     icon: Icon(Icons.close))),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: ScreenSize.screenWidth * 0.04),
+              padding: EdgeInsets.symmetric(
+                  horizontal: ScreenSize.screenWidth * 0.04),
               child: Card(
                 color: AppColors.orangeTwo,
                 child: ListTile(
@@ -55,41 +57,48 @@ class CustomDrawer extends GetView<HomeController> {
             ),
             ...List.generate(
                 drawerData.length,
-                (index) => Container(
-                      margin:
-                          EdgeInsets.only(top: ScreenSize.screenHeight * 0.003),
-                      child: Column(
-                        spacing: ScreenSize.screenHeight * 0.01,
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                width: ScreenSize.screenWidth * 0.1,
-                                height: ScreenSize.screenHeight * 0.05,
-                                padding: EdgeInsets.symmetric(
-                                    vertical: ScreenSize.screenHeight * 0.005,
-                                    horizontal: ScreenSize.screenWidth * 0.02),
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: ScreenSize.screenWidth * 0.05),
-                                decoration: BoxDecoration(
-                                    color: AppColors.white,
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: Image.asset(drawerData[index].image!),
-                              ),
-                              Text(
-                                drawerData[index].title!,
-                                style: TextStyle(
-                                    color: AppColors.white,
-                                    fontSize: 20.sp,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          Divider(
-                            indent: ScreenSize.screenWidth * 0.05,
-                            endIndent: ScreenSize.screenWidth * 0.05,
-                          ),
-                        ],
+                (index) => InkWell(
+                      onTap: () {
+                        userDrawerNavigation(index);
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(
+                            top: ScreenSize.screenHeight * 0.003),
+                        child: Column(
+                          spacing: ScreenSize.screenHeight * 0.01,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  width: ScreenSize.screenWidth * 0.1,
+                                  height: ScreenSize.screenHeight * 0.05,
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: ScreenSize.screenHeight * 0.005,
+                                      horizontal:
+                                          ScreenSize.screenWidth * 0.02),
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal:
+                                          ScreenSize.screenWidth * 0.05),
+                                  decoration: BoxDecoration(
+                                      color: AppColors.white,
+                                      borderRadius: BorderRadius.circular(15)),
+                                  child: Image.asset(drawerData[index].image!),
+                                ),
+                                Text(
+                                  drawerData[index].title!,
+                                  style: TextStyle(
+                                      color: AppColors.white,
+                                      fontSize: 20.sp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            Divider(
+                              indent: ScreenSize.screenWidth * 0.05,
+                              endIndent: ScreenSize.screenWidth * 0.05,
+                            ),
+                          ],
+                        ),
                       ),
                     )),
             InkWell(

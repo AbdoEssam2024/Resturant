@@ -18,6 +18,7 @@ class LoginController extends GetxController {
   late TextEditingController email;
   late TextEditingController password;
   bool showPass = true;
+
   enterUser() async {
     var formData = loginFormKey.currentState;
     if (formData!.validate()) {
@@ -29,8 +30,10 @@ class LoginController extends GetxController {
           sharedPreferences.setInt("visit", 2);
           sharedPreferences.setInt("id", response['data']['id']);
           sharedPreferences.setString("name", response['data']['user_name']);
+          sharedPreferences.setString("email", response['data']['user_email']);
           sharedPreferences.setString(
-              "email", response['data']['user_email']);
+              "birthdate", response['data']['user_birthdate']);
+          sharedPreferences.setInt("phone", response['data']['user_phone']);
           goToHomePage();
         } else {
           Get.snackbar("Failed", "This Account Don't Exist");

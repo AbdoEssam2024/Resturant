@@ -8,7 +8,8 @@ class ActiveOrdersData {
   ActiveOrdersData(this.crud);
 
   getActiveOrdersData(int userId) async {
-    var response = crud.postData(OrdersApi.activeOrders, {"userid": userId.toString()});
+    var response =
+        crud.postData(OrdersApi.activeOrders, {"userid": userId.toString()});
     return response.fold((l) => l, (r) => r);
   }
 }

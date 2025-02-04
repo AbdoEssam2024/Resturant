@@ -2,14 +2,14 @@ import 'package:either_dart/either.dart';
 import 'package:resturant_anj/core/class/crud/crud.dart';
 import 'package:resturant_anj/core/constant/api/orders_links/orders_api.dart';
 
-class CancelOrdersData {
+class OrdersItemsData {
   Crud crud;
 
-  CancelOrdersData(this.crud);
+  OrdersItemsData(this.crud);
 
-  getCancelOrdersData(int userId) async {
+  getOrdersItems(int orderId) async {
     var response =
-        crud.postData(OrdersApi.cancelOrders, {"userid": userId.toString()});
+        crud.postData(OrdersApi.ordersItems, {"orderid": orderId.toString()});
     return response.fold((l) => l, (r) => r);
   }
 }
