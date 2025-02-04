@@ -44,7 +44,7 @@ class UserAddressScreen extends GetView<AddressController> {
                 builder: (controller) => HandlingDataView(
                     statusRequest: controller.statusRequest,
                     widget: SizedBox(
-                      height: ScreenSize.screenHeight * 0.6,
+                      height: ScreenSize.screenHeight * 0.61,
                       child: ListView.builder(
                           itemCount: controller.userAddress.length,
                           itemBuilder: (context, index) => AddressCard(
