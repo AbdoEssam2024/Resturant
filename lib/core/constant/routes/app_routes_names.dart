@@ -11,12 +11,17 @@ class AppRoutesNames {
   static String successResetPassword = "/successResetPassword";
   // home //
   static String homeScreen = "/home";
+  // orders //
   static String ordersScreen = "/ordersScreen";
   static String successCancelOrder = "/successCancelOrder";
   static String orderItemsScreen = "/orderItemsScreen";
   static String checkOutScreen = "/checkOutScreen";
+  // profile //
   static String myProfileScreen = "/myProfileScreen";
+  // address //
   static String userAddressScreen = "/userAddressScreen";
   static String addAddressScreen = "/addAddressScreen";
   static String editAddressScreen = "/editAddressScreen";
+  // contact //
+  static String contact = "/contact";
 }

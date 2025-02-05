@@ -8,8 +8,15 @@ userDrawerNavigation(int index) {
       break;
     case 1:
       Get.offNamed(AppRoutesNames.myProfileScreen);
-      break ;
-    case 2 :
+      break;
+    case 2:
       Get.offNamed(AppRoutesNames.userAddressScreen);
+      break;
+    case 3:
+      print("3");
+      break;
+    case 4:
+      Get.offNamed(AppRoutesNames.contact);
+      break;
   }
 }

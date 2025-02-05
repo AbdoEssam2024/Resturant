@@ -37,6 +37,13 @@ class AppImages {
   static String userImage = "${homeDrawerImagesPath}user_image.png";
 
 
+  static String contactUsImagesPath = "assets/images/contact/";
+  static String customerService = "${contactUsImagesPath}customer_service.png";
+  static String facebook = "${contactUsImagesPath}facebook.png";
+  static String instagram = "${contactUsImagesPath}instagram.png";
+  static String website = "${contactUsImagesPath}website.png";
+  static String whatsapp = "${contactUsImagesPath}whatsapp.png";
+
   static String lottiesPath = "assets/lottie/";
   static String loading = "${lottiesPath}loading.json";
   static String nodata = "${lottiesPath}nodata.json";

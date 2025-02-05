@@ -11,6 +11,7 @@ import 'package:resturant_anj/view/screens/succes_reset_password/success_reset_p
 import 'package:resturant_anj/view/screens/succes_signup/success_signup.dart';
 import 'package:resturant_anj/view/screens/verify_email_forgetPw/screen/verify_email_forgetpw.dart';
 import 'package:resturant_anj/view/screens/verify_email_signup/screen/verify_email_signup.dart';
+import '../../../view/screens/contact_us/screen/contact_us_screen.dart';
 import '../../../view/screens/orders/screen/checkout_screen.dart';
 import '../../../view/screens/orders/screen/order_items_screen.dart';
 import '../../../view/screens/orders/screen/orders_screen.dart';
@@ -53,4 +54,5 @@ List<GetPage<dynamic>> routes = [
       name: AppRoutesNames.addAddressScreen, page: () => AddAddressScreen()),
   GetPage(
       name: AppRoutesNames.editAddressScreen, page: () => EditAddressScreen()),
+  GetPage(name: AppRoutesNames.contact, page: () => ContactUsScreen()),
 ];

@@ -82,6 +82,7 @@ flutter:
     - assets/images/home/offers/
     - assets/images/home/nav_icons/
     - assets/images/home/drawer/
+    - assets/images/contact/
     - assets/lottie/
 
   # An image asset can refer to one or more resolution-specific "variants", see

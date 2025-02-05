@@ -1,6 +1,6 @@
 import 'package:either_dart/either.dart';
 import 'package:resturant_anj/core/class/crud/crud.dart';
-import 'package:resturant_anj/core/constant/api/auth_api.dart';
+import 'package:resturant_anj/core/constant/api/auth/auth_api.dart';
 
 class SignupData {
   Crud crud;

@@ -87,7 +87,6 @@ class OrdersController extends GetxController with GetTickerProviderStateMixin {
     changeOrderStatusRequest = StatusRequest.loading;
     var response = await changeOrdersStatus.changeOrdersStatus(status, orderId);
     changeOrderStatusRequest = handlingData(response);
-    print("Res :=> $response");
     if (response['status'] == 'success') {
       if (changeOrderStatusRequest == StatusRequest.success) {
         changeResult = "Order Status Changed Successfully";
