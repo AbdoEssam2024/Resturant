@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:resturant_anj/core/class/status_request/statusrequest.dart';
 import 'package:resturant_anj/core/functions/handling_request.dart';
-import 'package:resturant_anj/data/remote_data/auth/auth/user_data/delete_user_address.dart';
-import 'package:resturant_anj/data/remote_data/auth/auth/user_data/get_user_address.dart';
+import 'package:resturant_anj/data/remote_data/auth/user_data/delete_user_address.dart';
+import 'package:resturant_anj/data/remote_data/auth/user_data/get_user_address.dart';
 import 'package:resturant_anj/main.dart';
 import '../../core/constant/routes/app_routes_names.dart';
 

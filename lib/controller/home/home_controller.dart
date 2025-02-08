@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:resturant_anj/core/class/status_request/statusrequest.dart';
 import 'package:resturant_anj/core/constant/routes/app_routes_names.dart';
-import 'package:resturant_anj/data/remote_data_home/offers_data.dart';
-import 'package:resturant_anj/data/remote_data_home/recommend_data.dart';
+import 'package:resturant_anj/data/remote_data/home_data/offers_data.dart';
+import 'package:resturant_anj/data/remote_data/home_data/recommend_data.dart';
 import 'package:resturant_anj/main.dart';
 import 'package:resturant_anj/view/screens/home/widgets/user_profile_drawer.dart';
 import '../../core/functions/handling_request.dart';
-import '../../data/remote_data_home/best_seller_data.dart';
-import '../../data/remote_data_home/categories.dart';
+import '../../data/remote_data/home_data/best_seller_data.dart';
+import '../../data/remote_data/home_data/categories.dart';
 
 class HomeController extends GetxController {
   StatusRequest statusRequest = StatusRequest.none;

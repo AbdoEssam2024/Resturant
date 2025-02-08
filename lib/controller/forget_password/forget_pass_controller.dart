@@ -6,7 +6,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:resturant_anj/core/class/status_request/statusrequest.dart';
 import 'package:resturant_anj/core/constant/routes/app_routes_names.dart';
 import 'package:resturant_anj/core/functions/handling_request.dart';
-import 'package:resturant_anj/data/remote_data/auth/auth/check_email/check_email.dart';
+import 'package:resturant_anj/data/remote_data/auth/check_email/check_email.dart';
 
 class ForgetPassController extends GetxController {
   late TextEditingController email;

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import '../../core/class/status_request/statusrequest.dart';
 import '../../core/functions/handling_request.dart';
-import '../../data/remote_data/auth/auth/user_data/edit_user_address.dart';
+import '../../data/remote_data/auth/user_data/edit_user_address.dart';
 
 class EditAddressController extends GetxController {
   StatusRequest statusRequest = StatusRequest.none;

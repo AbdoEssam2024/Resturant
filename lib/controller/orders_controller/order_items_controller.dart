@@ -1,13 +1,13 @@
 import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
-import 'package:resturant_anj/data/orders/delete_order_item.dart';
+import 'package:resturant_anj/data/remote_data/orders_data/orders/delete_order_item.dart';
 
 import '../../core/class/status_request/statusrequest.dart';
 import '../../core/constant/colors/app_colors.dart';
 import '../../core/constant/routes/app_routes_names.dart';
 import '../../core/functions/handling_request.dart';
-import '../../data/orders/change_orders_status.dart';
-import '../../data/orders/orders_items_data.dart';
+import '../../data/remote_data/orders_data/orders/change_orders_status.dart';
+import '../../data/remote_data/orders_data/orders/orders_items_data.dart';
 
 class OrderItemsController extends GetxController
     with GetTickerProviderStateMixin {

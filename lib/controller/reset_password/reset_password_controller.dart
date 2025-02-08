@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:resturant_anj/core/class/status_request/statusrequest.dart';
 import 'package:resturant_anj/core/constant/routes/app_routes_names.dart';
 import 'package:resturant_anj/core/functions/handling_request.dart';
-import 'package:resturant_anj/data/remote_data/auth/auth/reset_password/reset_password_data.dart';
+import 'package:resturant_anj/data/remote_data/auth/reset_password/reset_password_data.dart';
 
 class ResetPasswordController extends GetxController {
   late TextEditingController pass;

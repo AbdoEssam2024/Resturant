@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:resturant_anj/core/class/status_request/statusrequest.dart';
-import 'package:resturant_anj/data/orders/orders_items_data.dart';
+import 'package:resturant_anj/data/remote_data/orders_data/orders/orders_items_data.dart';
 
 import '../../core/functions/handling_request.dart';
 
