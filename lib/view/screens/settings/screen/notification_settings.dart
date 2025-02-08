@@ -6,7 +6,6 @@ import 'package:resturant_anj/core/constant/colors/app_colors.dart';
 import 'package:resturant_anj/core/constant/routes/app_routes_names.dart';
 import 'package:resturant_anj/core/constant/screen_size/screen_size.dart';
 import 'package:resturant_anj/core/functions/pop_func.dart';
-import 'package:resturant_anj/data/const_data/settings_data/notification_data.dart';
 import 'package:resturant_anj/view/core_widgets/pop_widget.dart';
 import 'package:resturant_anj/view/screens/settings/widgets/notification_settings_widget.dart';
 
@@ -40,25 +39,14 @@ class NotificationSettings extends GetView<NotificationSettingsController> {
               ),
             ),
             body: Container(
-              height: ScreenSize.screenHeight * 0.9,
-              padding: EdgeInsets.symmetric(
-                  vertical: ScreenSize.screenHeight * 0.07,
-                  horizontal: ScreenSize.screenWidth * 0.05),
-              decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(50.sp))),
-              child: ListView.builder(
-                  itemCount: notificatoinData.length,
-                  itemBuilder: (context, index) => Obx(
-                        () => NotificationSettingsWidget(
-                          text: notificatoinData[index].text,
-                          switchValue: notificatoinData[index].value.value,
-                          switchFunc: (value) {
-                            controller.switchFunc(index, value);
-                          },
-                        ),
-                      )),
-            )));
+                height: ScreenSize.screenHeight * 0.9,
+                padding: EdgeInsets.symmetric(
+                    vertical: ScreenSize.screenHeight * 0.07,
+                    horizontal: ScreenSize.screenWidth * 0.05),
+                decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(50.sp))),
+                child: NotificationSettingsWidget())));
   }
 }

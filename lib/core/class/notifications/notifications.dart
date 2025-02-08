@@ -58,12 +58,12 @@ class Notifications {
   //       payload: "Payload Data");
   // }
 
-  static void cancelSpicifiecNotification() async {
-    await flutterLocalNotificationsPlugin.cancel(1);
+  static void cancelSpicifiecNotification({required int id}) async {
+    await flutterLocalNotificationsPlugin.cancel(id);
     print("Canceled");
   }
 
-  static void cancelNotification() async {
+  static void cancelAllNotifications() async {
     await flutterLocalNotificationsPlugin.cancelAll();
   }
 }
