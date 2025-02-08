@@ -36,7 +36,7 @@ class UserAddressScreen extends GetView<AddressController> {
         body: Container(
           padding: EdgeInsets.symmetric(
               horizontal: ScreenSize.screenWidth * 0.03,
-              vertical: ScreenSize.screenHeight * 0.06),
+              vertical: ScreenSize.screenHeight * 0.05),
           decoration: BoxDecoration(
               color: AppColors.white,
               borderRadius: BorderRadius.vertical(top: Radius.circular(50))),
@@ -46,7 +46,7 @@ class UserAddressScreen extends GetView<AddressController> {
                 builder: (controller) => HandlingDataView(
                     statusRequest: controller.statusRequest,
                     widget: SizedBox(
-                      height: ScreenSize.screenHeight * 0.6,
+                      height: ScreenSize.screenHeight * 0.67,
                       child: ListView.builder(
                           itemCount: controller.userAddress.length,
                           itemBuilder: (context, index) => AddressCard(

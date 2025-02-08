@@ -1,5 +1,5 @@
 class AuthApi {
-  static String server = "http://10.0.2.2/resuturant_anj/auth/";
+  static String server = "http://abdoessam.atwebpages.com/auth/";
   static String login = "${server}login.php";
   static String signup = "${server}signup.php";
   static String verifyCode = "${server}verify_code.php";

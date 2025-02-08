@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:resturant_anj/controller/home/home_controller.dart';
+import 'package:resturant_anj/view/screens/home/widgets/notification_drawer.dart';
+import 'package:resturant_anj/view/screens/home/widgets/user_profile_drawer.dart';
 import '../../../../core/constant/colors/app_colors.dart';
 import '../../../../core/constant/screen_size/screen_size.dart';
 import '../../../core_widgets/searchbar.dart';
@@ -38,13 +40,13 @@ class HomeAppbar extends GetView<HomeController> {
                   AppbarIcons(
                     icon: Icons.notifications_outlined,
                     func: () {
-                      // sharedPreferences.clear();
+                      controller.updateDrawerData(NotificationDrawer());
                     },
                   ),
                   AppbarIcons(
                     icon: Icons.person_2_outlined,
                     func: () {
-                      controller.scaffoldKey.currentState!.openEndDrawer();
+                      controller.updateDrawerData(UserProfileDrawer());
                     },
                   ),
                 ],

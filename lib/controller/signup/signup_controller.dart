@@ -29,6 +29,7 @@ class SignupController extends GetxController {
       var response =
           await signupData.addUser(name.text, password.text, email.text);
       statusRequest = handlingData(response);
+      print("Res :=> $response");
       if (response['status'] == "success") {
         if (statusRequest == StatusRequest.success) {
           goToCheckEmailPage();

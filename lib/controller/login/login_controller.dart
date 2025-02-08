@@ -3,6 +3,7 @@ import 'package:get/get_core/get_core.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:resturant_anj/core/class/notifications/notifications.dart';
 import 'package:resturant_anj/core/class/status_request/statusrequest.dart';
 import 'package:resturant_anj/core/constant/routes/app_routes_names.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -31,9 +32,14 @@ class LoginController extends GetxController {
           sharedPreferences.setInt("id", response['data']['id']);
           sharedPreferences.setString("name", response['data']['user_name']);
           sharedPreferences.setString("email", response['data']['user_email']);
-          sharedPreferences.setString(
-              "birthdate", response['data']['user_birthdate']);
-          sharedPreferences.setInt("phone", response['data']['user_phone']);
+          if (response['data']['user_birthdate'] != null) {
+            sharedPreferences.setString(
+                "birthdate", response['data']['user_birthdate']);
+          }
+          if (response['data']['user_phone'] != null) {
+            sharedPreferences.setInt("phone", response['data']['user_phone']);
+          }
+          Notifications.showWelcomeNotification();
           goToHomePage();
         } else {
           Get.snackbar("Failed", "This Account Don't Exist");
@@ -60,6 +66,7 @@ class LoginController extends GetxController {
     );
     await FirebaseAuth.instance.signInWithCredential(credential);
     sharedPreferences.setInt("visit", 2);
+    Notifications.showWelcomeNotification();
     goToHomePage();
   }
 

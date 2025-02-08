@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -5,17 +6,21 @@ import 'package:resturant_anj/controller/home/home_controller.dart';
 import 'package:resturant_anj/core/constant/images/app_images.dart';
 import 'package:resturant_anj/core/constant/screen_size/screen_size.dart';
 import 'package:resturant_anj/core/functions/user_drawer_function.dart';
-import 'package:resturant_anj/data/const_data/home_data/drawer_data.dart';
+import 'package:resturant_anj/data/const_data/home_data/user_profile_drawer_data.dart';
 import '../../../../core/constant/colors/app_colors.dart';
 
-class CustomDrawer extends GetView<HomeController> {
-  const CustomDrawer({super.key});
+class UserProfileDrawer extends GetView<HomeController> {
+  const UserProfileDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       width: ScreenSize.screenWidth * 0.85,
       backgroundColor: AppColors.orange,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(60.sp),
+              bottomLeft: Radius.circular(60.sp))),
       child: Container(
         padding: EdgeInsets.only(
           top: ScreenSize.screenHeight * 0.05,
@@ -56,7 +61,7 @@ class CustomDrawer extends GetView<HomeController> {
               ),
             ),
             ...List.generate(
-                drawerData.length,
+                userProfileDrawerData.length,
                 (index) => InkWell(
                       onTap: () {
                         userDrawerNavigation(index);
@@ -82,10 +87,10 @@ class CustomDrawer extends GetView<HomeController> {
                                   decoration: BoxDecoration(
                                       color: AppColors.white,
                                       borderRadius: BorderRadius.circular(15)),
-                                  child: Image.asset(drawerData[index].image!),
+                                  child: Image.asset(userProfileDrawerData[index].image!),
                                 ),
                                 Text(
-                                  drawerData[index].title!,
+                                  userProfileDrawerData[index].title!,
                                   style: TextStyle(
                                       color: AppColors.white,
                                       fontSize: 20.sp,
@@ -102,7 +107,25 @@ class CustomDrawer extends GetView<HomeController> {
                       ),
                     )),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                AwesomeDialog(
+                  context: context,
+                  dialogType: DialogType.warning,
+                  title: "Are You Sure You Want\nTo Log Out ?",
+                  titleTextStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.sp,
+                      color: AppColors.black),
+                  btnOkText: "Stay In The App",
+                  btnCancelText: "Log Out",
+                  btnCancelOnPress: () {
+                    controller.logoutFunc();
+                  },
+                  btnOkOnPress: () {
+                    Get.back();
+                  },
+                ).show();
+              },
               child: Container(
                 decoration: BoxDecoration(
                     color: AppColors.red,

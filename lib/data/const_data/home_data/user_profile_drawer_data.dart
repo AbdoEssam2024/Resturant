@@ -2,7 +2,7 @@ import 'package:resturant_anj/model/home/drawer_model.dart';
 
 import '../../../core/constant/images/app_images.dart';
 
-List <DrawerModel> drawerData = [
+List <DrawerModel> userProfileDrawerData = [
   DrawerModel(title: "My Orders", image: AppImages.drawer_1),
   DrawerModel(title: "My Profile", image: AppImages.drawer_6),
   DrawerModel(title: "Delivery Address", image: AppImages.drawer_5),

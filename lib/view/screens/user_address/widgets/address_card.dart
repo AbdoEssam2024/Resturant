@@ -18,9 +18,8 @@ class AddressCard extends GetView<AddressController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: ScreenSize.screenHeight * 0.22,
-      margin: EdgeInsets.only(bottom: ScreenSize.screenHeight * 0.02),
       child: Card(
         color: AppColors.orangeTwo,
         elevation: 20,
@@ -35,17 +34,17 @@ class AddressCard extends GetView<AddressController> {
                   color: AppColors.orange,
                 ),
                 Expanded(
-                  child:  Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        spacing: 20,
-                        children: [
-                          CostumFormField(
-                              initVal: userAddressModel.addressTitle,
-                              secure: false),
-                          CostumFormField(
-                              initVal: userAddressModel.address, secure: false),
-                        ],
-                      ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 20,
+                    children: [
+                      CostumFormField(
+                          initVal: userAddressModel.addressTitle,
+                          secure: false),
+                      CostumFormField(
+                          initVal: userAddressModel.address, secure: false),
+                    ],
+                  ),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -86,7 +85,6 @@ class AddressCard extends GetView<AddressController> {
                 ),
               ],
             ),
-
           ],
         ),
       ),

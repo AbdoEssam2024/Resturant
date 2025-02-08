@@ -4,7 +4,8 @@ class AppImages {
   static String onBoardTwo = "${splashImagesPath}image_splash_two.png";
   static String onBoardThree = "${splashImagesPath}image_splash_three.png";
   static String onBoardIconOne = "${splashImagesPath}Card icon.png";
-  static String onBoardIconTwo = "${splashImagesPath}Transfer Document icon.png";
+  static String onBoardIconTwo =
+      "${splashImagesPath}Transfer Document icon.png";
   static String onBoardIconThree = "${splashImagesPath}Deliver_Boy_Icon.png";
 
   static String homeImagesPath = "assets/images/home/";
@@ -24,7 +25,7 @@ class AppImages {
   static String nav_4 = "${homeNavImagesPath}home_nav_4.png";
   static String nav_5 = "${homeNavImagesPath}home_nav_5.png";
 
-  static String homeDrawerImagesPath = "assets/images/home/drawer/";
+  static String homeDrawerImagesPath = "assets/images/home/user_drawer/";
   static String drawer_1 = "${homeDrawerImagesPath}drawer_1.png";
   static String drawer_2 = "${homeDrawerImagesPath}drawer_2.png";
   static String drawer_3 = "${homeDrawerImagesPath}drawer_3.png";
@@ -36,6 +37,12 @@ class AppImages {
   static String drawerUser = "${homeDrawerImagesPath}drawer_user.png";
   static String userImage = "${homeDrawerImagesPath}user_image.png";
 
+  static String notificationDrawerImagesPath =
+      "assets/images/home/notification_drawer/";
+  static String notification_1 = "${notificationDrawerImagesPath}notification1.png";
+  static String notification_2 = "${notificationDrawerImagesPath}notification2.png";
+  static String notification_3 = "${notificationDrawerImagesPath}notification3.png";
+  static String notification_4 = "${notificationDrawerImagesPath}notification4.png";
 
   static String contactUsImagesPath = "assets/images/contact/";
   static String customerService = "${contactUsImagesPath}customer_service.png";
@@ -43,6 +50,11 @@ class AppImages {
   static String instagram = "${contactUsImagesPath}instagram.png";
   static String website = "${contactUsImagesPath}website.png";
   static String whatsapp = "${contactUsImagesPath}whatsapp.png";
+
+  static String settingsImagesPath = "assets/images/settings/";
+  static String notifications = "${settingsImagesPath}notificationicon.png";
+  static String keyIcon = "${settingsImagesPath}keyicon.png";
+  static String userIcon = "${settingsImagesPath}usericon.png";
 
   static String lottiesPath = "assets/lottie/";
   static String loading = "${lottiesPath}loading.json";

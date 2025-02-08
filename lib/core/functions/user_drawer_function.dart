@@ -18,5 +18,11 @@ userDrawerNavigation(int index) {
     case 4:
       Get.offNamed(AppRoutesNames.contact);
       break;
+    case 5:
+      print("5");
+      break;
+    case 6:
+      Get.offNamed(AppRoutesNames.settings);
+      break;
   }
 }

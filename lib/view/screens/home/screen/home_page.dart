@@ -6,7 +6,7 @@ import 'package:resturant_anj/controller/home/home_controller.dart';
 import 'package:resturant_anj/core/class/handling_data_view/handlingdataview.dart';
 import 'package:resturant_anj/core/functions/pop_func.dart';
 import 'package:resturant_anj/view/core_widgets/pop_widget.dart';
-import 'package:resturant_anj/view/screens/home/widgets/custom_drawer.dart';
+import 'package:resturant_anj/view/screens/home/widgets/user_profile_drawer.dart';
 import '../../../../core/constant/colors/app_colors.dart';
 import '../widgets/best_seller_view.dart';
 import '../../../core_widgets/bottom_app_bar.dart';
@@ -41,7 +41,7 @@ class HomePage extends GetView<HomeController> {
         },
         widget: Scaffold(
           key: controller.scaffoldKey,
-          endDrawer: CustomDrawer(),
+          endDrawer:Obx(() => controller.drawerData.value),
           backgroundColor: AppColors.yellowBase,
           bottomNavigationBar: CustomBottomAppBar(
             initIndex: controller.pageIndex,

@@ -7,4 +7,6 @@ class CoreController extends GetxController {
     groupVal = value;
     update();
   }
+
+
 }

@@ -5,6 +5,9 @@ import 'package:resturant_anj/view/screens/forget_password/screen/forget_passwor
 import 'package:resturant_anj/view/screens/home/screen/home_page.dart';
 import 'package:resturant_anj/view/screens/login/screen/login_page.dart';
 import 'package:resturant_anj/view/screens/reset_password/reset_password.dart';
+import 'package:resturant_anj/view/screens/settings/screen/notification_settings.dart';
+import 'package:resturant_anj/view/screens/settings/screen/password_settings.dart';
+import 'package:resturant_anj/view/screens/settings/screen/settings_screen.dart';
 import 'package:resturant_anj/view/screens/signup/screen/signup.dart';
 import 'package:resturant_anj/view/screens/splash_screen/screen/splash_screen.dart';
 import 'package:resturant_anj/view/screens/succes_reset_password/success_reset_pass.dart';
@@ -55,4 +58,7 @@ List<GetPage<dynamic>> routes = [
   GetPage(
       name: AppRoutesNames.editAddressScreen, page: () => EditAddressScreen()),
   GetPage(name: AppRoutesNames.contact, page: () => ContactUsScreen()),
+  GetPage(name: AppRoutesNames.settings, page: () => SettingsScreen()),
+  GetPage(name: AppRoutesNames.notificationsettings, page: () => NotificationSettings()),
+  GetPage(name: AppRoutesNames.passwordSettings, page: () => PasswordSettings()),
 ];

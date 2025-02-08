@@ -24,4 +24,7 @@ class AppRoutesNames {
   static String editAddressScreen = "/editAddressScreen";
   // contact //
   static String contact = "/contact";
+  static String settings = "/settings";
+  static String notificationsettings = "/notificationsettings";
+  static String passwordSettings= "/passwordSettings";
 }

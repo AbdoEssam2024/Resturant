@@ -1,26 +1,24 @@
 import 'package:get/get.dart';
+import 'package:resturant_anj/core/class/notifications/notifications.dart';
+import 'package:resturant_anj/main.dart';
 import '../constant/routes/app_routes_names.dart';
 
 bottomBarNavigate(int index) {
   switch (index) {
     case 0:
-      print("index :=> $index");
+      print("Index $index");
       break;
     case 1:
-      print("index :=> $index");
+      print("Index $index");
       break;
     case 2:
-      Get.offNamed(AppRoutesNames.homeScreen , arguments: {
-        "index" : index
-      });
+      Get.offNamed(AppRoutesNames.homeScreen, arguments: {"index": index});
       break;
     case 3:
-      Get.offNamed(AppRoutesNames.ordersScreen , arguments: {
-        "index" : index
-      });
+      Get.offNamed(AppRoutesNames.ordersScreen, arguments: {"index": index});
       break;
     case 4:
-      print("index :=> $index");
+      Get.offNamed(AppRoutesNames.contact, arguments: {"index": index});
       break;
   }
 }
