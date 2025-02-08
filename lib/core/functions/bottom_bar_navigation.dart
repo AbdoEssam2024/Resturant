@@ -1,6 +1,4 @@
 import 'package:get/get.dart';
-import 'package:resturant_anj/core/class/notifications/notifications.dart';
-import 'package:resturant_anj/main.dart';
 import '../constant/routes/app_routes_names.dart';
 
 bottomBarNavigate(int index) {

@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:resturant_anj/core/class/notifications/notifications.dart';
 import 'package:resturant_anj/data/const_data/settings_data/notification_data.dart';

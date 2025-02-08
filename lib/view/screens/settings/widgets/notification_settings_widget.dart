@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:resturant_anj/controller/settings_controller/settings_controller.dart';
 import 'package:resturant_anj/core/constant/colors/app_colors.dart';
 import 'package:resturant_anj/core/constant/screen_size/screen_size.dart';
 

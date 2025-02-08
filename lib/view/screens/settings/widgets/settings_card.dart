@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:resturant_anj/controller/settings_controller/settings_controller.dart';
 import 'package:resturant_anj/core/constant/colors/app_colors.dart';
-import 'package:resturant_anj/core/constant/images/app_images.dart';
 import 'package:resturant_anj/core/constant/screen_size/screen_size.dart';
 import 'package:resturant_anj/data/const_data/settings_data/settings_data.dart';
 

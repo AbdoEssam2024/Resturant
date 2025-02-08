@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:resturant_anj/core/constant/routes/app_routes_names.dart';
 
 class SettingsController extends GetxController {
