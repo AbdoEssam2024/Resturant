@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:resturant_anj/core/class/status_request/statusrequest.dart';
 import 'package:resturant_anj/core/constant/routes/app_routes_names.dart';
+import 'package:resturant_anj/data/const_data/sqflite_db.dart';
 import 'package:resturant_anj/data/remote_data/home_data/offers_data.dart';
 import 'package:resturant_anj/data/remote_data/home_data/recommend_data.dart';
 import 'package:resturant_anj/main.dart';
@@ -13,8 +14,11 @@ import '../../data/remote_data/home_data/categories.dart';
 class HomeController extends GetxController {
   StatusRequest statusRequest = StatusRequest.none;
   late GlobalKey<ScaffoldState> scaffoldKey;
+  SqfliteDB sqfliteDB = SqfliteDB();
+  List<Map<String, dynamic>> userData = [];
 
-  int pageIndex = 2 ;
+  int pageIndex = 2;
+  late int userId;
   late String userName;
   late String userEmail;
   int currentPage = 0;
@@ -34,9 +38,9 @@ class HomeController extends GetxController {
 
   var drawerData = Rx<Widget>(UserProfileDrawer());
 
-  updateDrawerData (Widget newWidget) {
+  updateDrawerData(Widget newWidget) {
     scaffoldKey.currentState!.openEndDrawer();
-    drawerData.value = newWidget ;
+    drawerData.value = newWidget;
   }
 
   onChange(int index) {
@@ -44,23 +48,21 @@ class HomeController extends GetxController {
     update();
   }
 
-
   goToNextPage(int index) {
     pageController.animateToPage(index,
         duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
   }
 
-  getName() {
-    if (sharedPreferences.getString("name") == null) {
-      userName = "";
+  getName() async {
+    if (sharedPreferences.getInt("id") == null) {
+      userId = -1;
     } else {
-      userName = sharedPreferences.getString("name")!;
+      userId = sharedPreferences.getInt("id")!;
     }
-    if (sharedPreferences.getString("email") == null) {
-      userEmail = "";
-    } else {
-      userEmail = sharedPreferences.getString("email")!;
-    }
+    userData =
+        await sqfliteDB.getData(userId, "user_data", "user_id = $userId");
+    userName = userData[0]['user_name'];
+    userEmail = userData[0]['user_email'];
   }
 
   getCategories() async {
@@ -113,7 +115,7 @@ class HomeController extends GetxController {
     update();
   }
 
-  logoutFunc () {
+  logoutFunc() {
     sharedPreferences.clear();
     Get.offAllNamed(AppRoutesNames.loginScreen);
   }

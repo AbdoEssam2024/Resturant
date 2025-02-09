@@ -9,12 +9,17 @@ class NotificationSettingsController extends GetxController {
   RxMap<String, dynamic> notificationSettingsData = <String, dynamic>{}.obs;
 
   switchFunc({required String colName, required int val}) async {
-    int response =
-        await sqfliteDB.updateData("notification_settings", {colName: val});
+    int response = await sqfliteDB.updateData(
+        table: "notification_settings",
+        data: "$colName = $val",
+        where: "1 = 1");
     print("Update Response :=> $response");
     await getSettingsData();
     if (notificationSettingsData[colName] == 1) {
-      Notifications.showWelcomeNotification();
+      Notifications.showOnceNotification(
+        body: "Success",
+        title: "Notification Settings Updated Successfully",
+      );
     } else {
       Notifications.cancelAllNotifications();
     }
@@ -33,7 +38,7 @@ class NotificationSettingsController extends GetxController {
         userId, "notification_settings", "user_id = $userId");
     notificationSettingsData.value = response[0];
     insertSettingsData();
-    print("Res :=> $notificationSettingsData");
+    print("Res :=> $response");
   }
 
   insertSettingsData() async {
@@ -49,16 +54,9 @@ class NotificationSettingsController extends GetxController {
     update();
   }
 
-  delete() async {
-    int response = await sqfliteDB.deleteData(
-        "DELETE FROM 'notification_settings' WHERE user_id = $userId");
-    print("Delete Response :=> $response");
-  }
-
   @override
   void onInit() {
     getUserData();
-    // delete();
     getSettingsData();
     super.onInit();
   }

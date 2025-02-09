@@ -24,83 +24,79 @@ class MyProfileScreen extends GetView<UserProfileController> {
         popFunc(didpop, Get.offNamed(AppRoutesNames.homeScreen));
       },
       widget: Scaffold(
-        backgroundColor: AppColors.yellowBase,
-        appBar: AppBar(
-          toolbarHeight: ScreenSize.screenHeight * 0.1,
-          leading: IconButton(
-              onPressed: () {
-                controller.backToHomePage();
-              },
-              icon: Icon(Icons.arrow_back_ios)),
           backgroundColor: AppColors.yellowBase,
-          centerTitle: true,
-          title: Text("My Profile"),
-        ),
-        body: Container(
-            padding: EdgeInsets.symmetric(horizontal: 50),
-            decoration: BoxDecoration(
-                color: AppColors.white,
-                borderRadius:
-                    BorderRadius.vertical(top: Radius.circular(50.sp))),
-            child: GetBuilder<UserProfileController>(
-                builder: (controller) => HandlingDataView(
-                      statusRequest: controller.statusRequest,
-                      widget: ListView(
-                        children: [
-                          Container(
-                              margin: EdgeInsets.symmetric(
-                                  vertical: ScreenSize.screenHeight * 0.01),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: ScreenSize.screenWidth * 0.03,
-                                  vertical: ScreenSize.screenHeight * 0.002),
-                              width: ScreenSize.screenWidth * 0.4,
-                              height: ScreenSize.screenHeight * 0.3,
-                              child: Image.asset(
-                                AppImages.userImage,
-                                fit: BoxFit.contain,
-                              )),
-                          UserProfileInputs(
-                              feildController: controller.name,
-                              validFunc: (val) {
-                                return validInput(val!, 6, 50, "name", "Name");
-                              },
-                              label: "Full Name"),
-                          UserProfileInputs(
-                              feildController: controller.email,
-                              validFunc: (val) {
-                                return validInput(
-                                    val!, 6, 50, "email", "Email");
-                              },
-                              label: "Email"),
-                          UserProfileInputs(
-                              feildController: controller.phone,
-                              validFunc: (val) {
-                                return validInput(
-                                    val!, 10, 14, "phone", "Phone");
-                              },
-                              label: "Phone"),
-                          UserProfileInputs(
-                              fieldTapFunc: () {
-                                controller.selectDate(context);
-                              },
-                              icon: Icons.date_range_rounded,
-                              readOnly: true,
-                              feildController: controller.birthDate,
-                              validFunc: (val) {
-                                print("value :=> $val");
-                                return "Date valid";
-                              },
-                              label: "Date Of Birth"),
-                          UpdateProfileBtn(
-                            btnText: "Update Profile",
-                            btnFunc: () {
-                              controller.updateUserDataFunc();
+          appBar: AppBar(
+            toolbarHeight: ScreenSize.screenHeight * 0.1,
+            leading: IconButton(
+                onPressed: () {
+                  controller.backToHomePage();
+                },
+                icon: Icon(Icons.arrow_back_ios)),
+            backgroundColor: AppColors.yellowBase,
+            centerTitle: true,
+            title: Text("My Profile"),
+          ),
+          body: Container(
+              padding: EdgeInsets.symmetric(horizontal: 50),
+              decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius:
+                      BorderRadius.vertical(top: Radius.circular(50.sp))),
+              child: Obx(() => HandlingDataView(
+                    statusRequest: controller.statusRequest.value,
+                    widget: ListView(
+                      children: [
+                        Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: ScreenSize.screenHeight * 0.01),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: ScreenSize.screenWidth * 0.03,
+                                vertical: ScreenSize.screenHeight * 0.002),
+                            width: ScreenSize.screenWidth * 0.4,
+                            height: ScreenSize.screenHeight * 0.3,
+                            child: Image.asset(
+                              AppImages.userImage,
+                              fit: BoxFit.contain,
+                            )),
+                        UserProfileInputs(
+                            feildController: controller.name.value,
+                            validFunc: (val) {
+                              return validInput(val!, 6, 50, "name", "Name");
                             },
-                          ),
-                        ],
-                      ),
-                    ))),
-      ),
+                            label: "Full Name"),
+                        UserProfileInputs(
+                            feildController: controller.email.value,
+                            validFunc: (val) {
+                              return validInput(val!, 6, 50, "email", "Email");
+                            },
+                            label: "Email"),
+                        UserProfileInputs(
+                            feildController: controller.phone.value,
+                            validFunc: (val) {
+                              return validInput(val!, 10, 14, "phone", "Phone");
+                            },
+                            label: "Phone"),
+                        UserProfileInputs(
+                            fieldTapFunc: () {
+                              controller.selectDate(context);
+                            },
+                            icon: Icons.date_range_rounded,
+                            readOnly: true,
+                            feildController: controller.birthDate.value,
+                            validFunc: (val) {
+                              print("value :=> $val");
+                              return "Date valid";
+                            },
+                            label: "Date Of Birth"),
+                        UpdateProfileBtn(
+                          btnText: "Update Profile",
+                          btnFunc: () {
+                            controller.updateUserDataFunc();
+                          },
+                        ),
+                      ],
+                    ),
+                  )))),
     );
   }
 }

@@ -17,7 +17,7 @@ class SignupInputs extends GetView<SignupController> {
           CostumFormField(
               secure: false,
               validFunc: (val) {
-                return validInput(val!, 6, 50, "name", "Name");
+                return validInput(val!, 6, 20, "name", "Name");
               },
               feildController: controller.name,
               sufIcon: Icons.person_2,

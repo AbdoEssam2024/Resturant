@@ -46,14 +46,14 @@ class UserProfileDrawer extends GetView<HomeController> {
                   title: Text(
                     controller.userName,
                     style: TextStyle(
-                        fontSize: 20.sp,
+                        fontSize: 16.sp,
                         color: AppColors.black,
                         fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
                     controller.userEmail,
                     style: TextStyle(
-                        fontSize: 16.sp,
+                        fontSize: 14.sp,
                         color: AppColors.black,
                         fontWeight: FontWeight.bold),
                   ),
@@ -87,7 +87,8 @@ class UserProfileDrawer extends GetView<HomeController> {
                                   decoration: BoxDecoration(
                                       color: AppColors.white,
                                       borderRadius: BorderRadius.circular(15)),
-                                  child: Image.asset(userProfileDrawerData[index].image!),
+                                  child: Image.asset(
+                                      userProfileDrawerData[index].image!),
                                 ),
                                 Text(
                                   userProfileDrawerData[index].title!,

@@ -7,10 +7,8 @@ class SqfliteDB {
   Future<Database?> get db async {
     if (_db == null) {
       _db = await initDb();
-      print("Db Status null :=> $_db");
       return _db;
     } else {
-      print("Db Status init :=> $_db");
       return _db;
     }
   }
@@ -21,7 +19,7 @@ class SqfliteDB {
     String dbName = join(dbPath, "resturant.db");
 
     Database myDb = await openDatabase(dbName,
-        onCreate: _onCreate, version: 1, onUpgrade: _onUpgrade);
+        onCreate: _onCreate, version: 3, onUpgrade: _onUpgrade);
     return myDb;
   }
 
@@ -39,11 +37,21 @@ class SqfliteDB {
       "cashBack" INTEGER NOT NULL DEFAULT 0
     );""";
     await db.execute(sql);
-
-    print("Created");
   }
 
-  _onUpgrade(Database db, int oldVersio, int newVersion) {}
+  _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < newVersion) {
+      String sql = """CREATE TABLE 'user_data'
+      (
+      'user_id' INTEGER NOT NULL,
+      'user_name' TEXT NOT NULL,
+      'user_email' TEXT NOT NULL,
+      'user_birthdate' TEXT,
+      'user_phone' INTEGER
+    )""";
+      await db.execute(sql);
+    }
+  }
 
   getData(int userId, String table, String where) async {
     Database? myDb = await db;
@@ -62,16 +70,13 @@ class SqfliteDB {
     return response;
   }
 
-  updateData(String table, Map<String, dynamic> data) async {
+  updateData(
+      {required String table,
+      required String data,
+      required String where}) async {
     Database? myDb = await db;
-    late String col;
-    late int val;
-    data.forEach((column, value) {
-      col = column;
-      val = value;
-    });
     String sql = """
-    UPDATE $table SET $col = $val; 
+    UPDATE $table SET $data WHERE $where; 
     """;
     int response = await myDb!.rawUpdate(sql);
     return response;

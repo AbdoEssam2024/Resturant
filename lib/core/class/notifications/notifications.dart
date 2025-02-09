@@ -18,13 +18,13 @@ class Notifications {
     );
   }
 
-  static void showWelcomeNotification() async {
+  static void showOnceNotification({required String title , required String body}) async {
     NotificationDetails details = NotificationDetails(
       android: AndroidNotificationDetails("1", "First Notification",
           importance: Importance.max, priority: Priority.high),
     );
     await flutterLocalNotificationsPlugin.show(
-        0, "Welcome", "Welcome To Resturant App", details,
+        0, title, body, details,
         payload: "Payload Data");
   }
 

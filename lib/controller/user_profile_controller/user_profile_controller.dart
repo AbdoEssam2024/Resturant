@@ -1,55 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:resturant_anj/core/class/notifications/notifications.dart';
 import 'package:resturant_anj/core/class/status_request/statusrequest.dart';
 import 'package:resturant_anj/core/constant/routes/app_routes_names.dart';
 import 'package:resturant_anj/core/functions/handling_request.dart';
+import 'package:resturant_anj/data/const_data/sqflite_db.dart';
 import 'package:resturant_anj/data/remote_data/auth/user_data/update_user_data.dart';
 import 'package:resturant_anj/main.dart';
 
 class UserProfileController extends GetxController {
   UpdateUserData updateUserData = UpdateUserData(Get.find());
-  StatusRequest statusRequest = StatusRequest.none;
-
+  Rx<StatusRequest> statusRequest = StatusRequest.none.obs;
+  SqfliteDB sqfliteDB = SqfliteDB();
+  RxList<Map<String, dynamic>> userData = <Map<String, dynamic>>[].obs;
   late int userId;
-  late String userName;
-  late String userEmail;
-  late String userBirthDate;
-  late int userPhone;
 
-  late TextEditingController name;
+  Rx<TextEditingController> name = TextEditingController().obs;
 
-  late TextEditingController birthDate;
+  Rx<TextEditingController> birthDate = TextEditingController().obs;
 
-  late TextEditingController email;
+  Rx<TextEditingController> email = TextEditingController().obs;
 
-  late TextEditingController phone;
+  Rx<TextEditingController> phone = TextEditingController().obs;
 
-  getUserData() {
+  getUserData() async {
+    statusRequest.value = StatusRequest.loading;
     if (sharedPreferences.getInt("id") == null) {
       userId = -1;
     } else {
       userId = sharedPreferences.getInt("id")!;
     }
-    if (sharedPreferences.getString("name") == null) {
-      userName = "";
+    userData.value =
+        await sqfliteDB.getData(userId, "user_data", "user_id = $userId");
+    name.value.text = userData[0]['user_name'];
+    email.value.text = userData[0]['user_email'];
+
+    if (userData[0]['user_birthdate'] == null) {
+      birthDate.value.text = "";
     } else {
-      userName = sharedPreferences.getString("name")!;
+      birthDate.value.text = userData[0]['user_birthdate'];
     }
-    if (sharedPreferences.getString("email") == null) {
-      userEmail = "";
+    if (userData[0]['user_phone'] == null) {
+      phone.value.text = 0.toString();
     } else {
-      userEmail = sharedPreferences.getString("email")!;
+      phone.value.text = userData[0]['user_phone'].toString();
     }
-    if (sharedPreferences.getString("birthdate") == null) {
-      userBirthDate = "";
-    } else {
-      userBirthDate = sharedPreferences.getString("birthdate")!;
-    }
-    if (sharedPreferences.getInt("phone") == null) {
-      userPhone = 0;
-    } else {
-      userPhone = sharedPreferences.getInt("phone")!;
-    }
+    statusRequest.value = StatusRequest.success;
   }
 
   backToHomePage() {
@@ -63,50 +59,43 @@ class UserProfileController extends GetxController {
         lastDate: DateTime.now(),
         initialDate: DateTime.now());
     if (selected != null) {
-      birthDate.text = selected.toString().split(" ")[0];
+      birthDate.value.text = selected.toString().split(" ")[0];
     }
-    update();
-  }
-
-  initializeControllers() {
-    name = TextEditingController(text: userName);
-    birthDate = TextEditingController(text: userBirthDate);
-    email = TextEditingController(text: userEmail);
-    phone = TextEditingController(text: userPhone.toString());
   }
 
   disposeControllers() {
-    name.dispose();
-    birthDate.dispose();
-    email.dispose();
-    phone.dispose();
+    name.value.dispose();
+    birthDate.value.dispose();
+    email.value.dispose();
+    phone.value.dispose();
   }
 
   updateUserDataFunc() async {
-    statusRequest = StatusRequest.loading;
-    var response = await updateUserData.updateUserData(
-        userId, name.text, email.text, birthDate.text, phone.text);
-    statusRequest = handlingData(response);
+    statusRequest.value = StatusRequest.loading;
+    var response = await updateUserData.updateUserData(userId, name.value.text,
+        email.value.text, birthDate.value.text, phone.value.text);
+    statusRequest.value = handlingData(response);
     if (response['status'] == "success") {
-      if (statusRequest == StatusRequest.success) {
-        sharedPreferences.setString("name", name.text);
-        sharedPreferences.setString("email", email.text);
-        sharedPreferences.setInt("phone", int.parse(phone.text));
-        sharedPreferences.setString("birthdate", birthDate.text);
+      if (statusRequest.value == StatusRequest.success) {
+        sqfliteDB.updateData(
+            table: "user_data",
+            data:
+                "user_name = '${name.value.text}' , user_email = '${email.value.text}' , user_birthdate = '${birthDate.value.text}' , user_phone = ${phone.value.text}",
+            where: "user_id = $userId");
         getUserData();
-        Get.snackbar("Success", "Profile Data Updated Successfully");
+        Notifications.showOnceNotification(
+            title: "Success", body: "Profile Data Updated Successfully");
       }
     } else {
-      Get.snackbar("Failed", "Couldn't Update Non Changes");
+      Notifications.showOnceNotification(
+          title: "Failed",
+          body: "Couldn't Update Non Changes , Please Try Again Later");
     }
-
-    update();
   }
 
   @override
   void onInit() {
     getUserData();
-    initializeControllers();
     super.onInit();
   }
 

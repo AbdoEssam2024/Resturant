@@ -9,13 +9,16 @@ import 'package:resturant_anj/core/constant/routes/app_routes_names.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:resturant_anj/core/functions/handling_request.dart';
+import 'package:resturant_anj/data/const_data/sqflite_db.dart';
 import 'package:resturant_anj/data/remote_data/auth/login/login_data.dart';
 import 'package:resturant_anj/main.dart';
 
 class LoginController extends GetxController {
   StatusRequest statusRequest = StatusRequest.none;
   LoginData loginData = LoginData(Get.find());
+  SqfliteDB sqfliteDB = SqfliteDB();
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  List<Map<String, dynamic>> userData = [];
   late TextEditingController email;
   late TextEditingController password;
   bool showPass = true;
@@ -29,17 +32,19 @@ class LoginController extends GetxController {
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
           sharedPreferences.setInt("visit", 2);
+          userData = await sqfliteDB.getData(response['data']['id'],
+              "user_data", "user_id = ${response['data']['id']}");
+          if (userData.isEmpty) {
+            sqfliteDB.insertData(
+                table: "user_data",
+                columns: "'user_id','user_name','user_email'",
+                values:
+                    "${response['data']['id']} , '${response['data']['user_name']}' , '${response['data']['user_email']}'");
+          }
           sharedPreferences.setInt("id", response['data']['id']);
-          sharedPreferences.setString("name", response['data']['user_name']);
-          sharedPreferences.setString("email", response['data']['user_email']);
-          if (response['data']['user_birthdate'] != null) {
-            sharedPreferences.setString(
-                "birthdate", response['data']['user_birthdate']);
-          }
-          if (response['data']['user_phone'] != null) {
-            sharedPreferences.setInt("phone", response['data']['user_phone']);
-          }
-          Notifications.showWelcomeNotification();
+          Notifications.showOnceNotification(
+              title: "Welcome", body: "Welcome To Resturant App");
+
           goToHomePage();
         } else {
           Get.snackbar("Failed", "This Account Don't Exist");
@@ -48,6 +53,8 @@ class LoginController extends GetxController {
     } else {
       return "Invalid Inputs ";
     }
+    print("Data Length :=> ${userData.length}");
+    print("Data :=> $userData");
     update();
   }
 
@@ -66,7 +73,8 @@ class LoginController extends GetxController {
     );
     await FirebaseAuth.instance.signInWithCredential(credential);
     sharedPreferences.setInt("visit", 2);
-    Notifications.showWelcomeNotification();
+    Notifications.showOnceNotification(
+        title: "Welcome", body: "Welcome To Resturant App");
     goToHomePage();
   }
 
