@@ -28,7 +28,8 @@ List<GetPage<dynamic>> routes = [
   GetPage(
       name: AppRoutesNames.splashScreen,
       page: () => SplashScreen(),
-      middlewares: [SplashMiddleware()]),
+      middlewares: [SplashMiddleware()]
+      ),
   GetPage(name: AppRoutesNames.loginScreen, page: () => LoginPage()),
   GetPage(name: AppRoutesNames.signUpScreen, page: () => SignUp()),
   GetPage(

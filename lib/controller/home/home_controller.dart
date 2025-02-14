@@ -38,6 +38,8 @@ class HomeController extends GetxController {
 
   var drawerData = Rx<Widget>(UserProfileDrawer());
 
+  List<Map<String, dynamic>> notificationData = [];
+
   updateDrawerData(Widget newWidget) {
     scaffoldKey.currentState!.openEndDrawer();
     drawerData.value = newWidget;
@@ -120,15 +122,34 @@ class HomeController extends GetxController {
     Get.offAllNamed(AppRoutesNames.loginScreen);
   }
 
+  getNotificationData() async {
+    notificationData = [];
+    notificationData =
+        await sqfliteDB.getData(userId, "notifications", "user_id = $userId");
+  }
+
+  deleteNotification(int notificationId, int index) async {
+    await sqfliteDB.deleteData(
+        table: "notifications", where: "notificaion_id = $notificationId");
+    getNotificationData();
+    update();
+  }
+
+  initControllers() {
+    pageController = PageController();
+    scaffoldKey = GlobalKey<ScaffoldState>();
+  }
+
   @override
   void onInit() {
-    pageController = PageController();
+    initControllers();
     getName();
     getCategories();
     getBestSellerItems();
     getOffersItems();
     getRecommendedItems();
-    scaffoldKey = GlobalKey<ScaffoldState>();
+    getNotificationData();
+
     super.onInit();
   }
 }

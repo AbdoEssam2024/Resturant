@@ -40,6 +40,7 @@ class HomeAppbar extends GetView<HomeController> {
                   AppbarIcons(
                     icon: Icons.notifications_outlined,
                     func: () {
+                
                       controller.updateDrawerData(NotificationDrawer());
                     },
                   ),

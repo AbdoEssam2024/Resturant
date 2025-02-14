@@ -19,12 +19,12 @@ class SqfliteDB {
     String dbName = join(dbPath, "resturant.db");
 
     Database myDb = await openDatabase(dbName,
-        onCreate: _onCreate, version: 3, onUpgrade: _onUpgrade);
+        onCreate: _onCreate, version: 1, onUpgrade: _onUpgrade);
     return myDb;
   }
 
   _onCreate(Database db, int version) async {
-    String sql = """CREATE TABLE "notification_settings"
+    String notificaionSettingsSql = """CREATE TABLE "notification_settings"
       (
       "user_id" INTEGER NOT NULL,
       "general_settings" INTEGER NOT NULL DEFAULT 1,
@@ -36,12 +36,10 @@ class SqfliteDB {
       "discount" INTEGER NOT NULL DEFAULT 1,
       "cashBack" INTEGER NOT NULL DEFAULT 0
     );""";
-    await db.execute(sql);
-  }
+    await db.execute(notificaionSettingsSql);
+    print("======== Settings Created ========");
 
-  _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    if (oldVersion < newVersion) {
-      String sql = """CREATE TABLE 'user_data'
+    String userDataSql = """CREATE TABLE 'user_data'
       (
       'user_id' INTEGER NOT NULL,
       'user_name' TEXT NOT NULL,
@@ -49,9 +47,22 @@ class SqfliteDB {
       'user_birthdate' TEXT,
       'user_phone' INTEGER
     )""";
-      await db.execute(sql);
-    }
+    await db.execute(userDataSql);
+    print("======== User Data Created ========");
+
+    String notificationDataSql = """CREATE TABLE 'notifications'
+      (
+      'notificaion_id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      'user_id' INTEGER NOT NULL,
+      'notificaion_image' TEXT NOT NULL,
+      'notificaion_title' TEXT NOT NULL,
+      'notificaion_body' TEXT NOT NULL
+    )""";
+    await db.execute(notificationDataSql);
+    print("======== Notification Data Created ========");
   }
+
+  _onUpgrade(Database db, int oldVersion, int newVersion) async {}
 
   getData(int userId, String table, String where) async {
     Database? myDb = await db;
@@ -82,8 +93,9 @@ class SqfliteDB {
     return response;
   }
 
-  deleteData(String sqlQuery) async {
+  deleteData({required String table, required String where}) async {
     Database? myDb = await db;
+    String sqlQuery = "DELETE FROM $table WHERE $where";
     int response = await myDb!.rawDelete(sqlQuery);
     return response;
   }

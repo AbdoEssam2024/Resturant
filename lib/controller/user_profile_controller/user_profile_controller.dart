@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:resturant_anj/core/class/notifications/notifications.dart';
 import 'package:resturant_anj/core/class/status_request/statusrequest.dart';
+import 'package:resturant_anj/core/constant/images/app_images.dart';
 import 'package:resturant_anj/core/constant/routes/app_routes_names.dart';
 import 'package:resturant_anj/core/functions/handling_request.dart';
 import 'package:resturant_anj/data/const_data/sqflite_db.dart';
@@ -83,13 +84,28 @@ class UserProfileController extends GetxController {
                 "user_name = '${name.value.text}' , user_email = '${email.value.text}' , user_birthdate = '${birthDate.value.text}' , user_phone = ${phone.value.text}",
             where: "user_id = $userId");
         getUserData();
+        String successTitle = "Success";
+        String successBody = "Profile Data Updated Successfully";
         Notifications.showOnceNotification(
-            title: "Success", body: "Profile Data Updated Successfully");
+            title: successTitle, body: successBody);
+        sqfliteDB.insertData(
+            table: "notifications",
+            columns:
+                "user_id , notificaion_image , notificaion_title , notificaion_body",
+            values:
+                "$userId , '${AppImages.cancel}' , '$successTitle' , '$successBody'");
       }
     } else {
-      Notifications.showOnceNotification(
-          title: "Failed",
-          body: "Couldn't Update Non Changes , Please Try Again Later");
+      String failedTitle = "Failed";
+      String failedBody =
+          "Cannot Update Non Changes , Please Try Again Later";
+      Notifications.showOnceNotification(title: failedTitle, body: failedBody);
+      sqfliteDB.insertData(
+          table: "notifications",
+          columns:
+              "user_id , notificaion_image , notificaion_title , notificaion_body",
+          values:
+              "$userId , '${AppImages.cancel}' , '$failedTitle' , '$failedBody'");
     }
   }
 

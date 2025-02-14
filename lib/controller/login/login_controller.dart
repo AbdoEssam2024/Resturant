@@ -5,6 +5,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:resturant_anj/core/class/notifications/notifications.dart';
 import 'package:resturant_anj/core/class/status_request/statusrequest.dart';
+import 'package:resturant_anj/core/constant/images/app_images.dart';
 import 'package:resturant_anj/core/constant/routes/app_routes_names.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,6 +18,8 @@ class LoginController extends GetxController {
   StatusRequest statusRequest = StatusRequest.none;
   LoginData loginData = LoginData(Get.find());
   SqfliteDB sqfliteDB = SqfliteDB();
+  String notificationTitle = "Welcome";
+  String notificationBody = "Welcome To Resturant App";
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   List<Map<String, dynamic>> userData = [];
   late TextEditingController email;
@@ -35,7 +38,7 @@ class LoginController extends GetxController {
           userData = await sqfliteDB.getData(response['data']['id'],
               "user_data", "user_id = ${response['data']['id']}");
           if (userData.isEmpty) {
-            sqfliteDB.insertData(
+            await sqfliteDB.insertData(
                 table: "user_data",
                 columns: "'user_id','user_name','user_email'",
                 values:
@@ -43,7 +46,13 @@ class LoginController extends GetxController {
           }
           sharedPreferences.setInt("id", response['data']['id']);
           Notifications.showOnceNotification(
-              title: "Welcome", body: "Welcome To Resturant App");
+              title: notificationTitle, body: notificationBody);
+          await sqfliteDB.insertData(
+              table: "notifications",
+              columns:
+                  "user_id , notificaion_image , notificaion_title , notificaion_body",
+              values:
+                  "${response['data']['id']} , '${AppImages.notification_1}' , '$notificationTitle' , '$notificationBody'");
 
           goToHomePage();
         } else {
